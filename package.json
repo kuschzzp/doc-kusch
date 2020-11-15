@@ -1,0 +1,18 @@
+{
+  "name": "doc-kusch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://gitee.com/kuschzzp/doc-kusch.git",
+  "author": "zhangzp <2530213964@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.7.1"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "dependencies": {
+    "vuepress-theme-reco": "^1.5.7"
+  }
+}
