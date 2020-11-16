@@ -2,7 +2,7 @@ module.exports = {
   title: 'kusch的小破站',
   description: 'JUST FOR FUN',
   base: '/doc-kusch/',   // 设置站点根路径
-  port: 8086,
+  // port: 8080,
   search: true,  //开启搜索框
   searchMaxSuggestions: 10, //调整默认搜索框显示的搜索结果数量
   dest: './ROOT',  // 设置输出目录
