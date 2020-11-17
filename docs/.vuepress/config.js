@@ -269,7 +269,7 @@ module.exports = {
         },          // 不配置该项的话不会出现全局播放器
         aplayer: {
           fixed: true, //是否开启吸底模式
-          autoplay: false, //是否开启自动播放
+          autoplay: true, //是否开启自动播放
           lrcType: 3,  //设置 lrc 歌词解析模式,0：禁用 lrc 歌词，1：lrc 格式的字符串，3：lrc 文件 url
           loop: "all", //设置播放器的初始循环模式
         },
