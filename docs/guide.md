@@ -7,7 +7,7 @@ sidebarDepth: 2
 # 搭建目的
 
 ::: tip 提示
-主要是为了自己时不时心血来潮想写博客。
+主要是为了自己时不时心血来潮想写博客。For Fun!
 :::
 
 ### 记录一下插件网站
@@ -51,3 +51,5 @@ sidebarDepth: 2
 <!-- 这样就可以在 about.html 页面单独引入一个播放器咯～ -->
 
 ```
+
+gitee-publish -c gitee账户 -p gitee密码 -r gitee仓库名
