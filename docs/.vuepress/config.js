@@ -12,7 +12,19 @@ module.exports = {
     ['link', { rel: 'apple-touch-icon', href: '/images/photo.jpg' }],
     ['meta', { 'http-quiv': 'pragma', cotent: 'no-cache' }],
     ['meta', { 'http-quiv': 'pragma', cotent: 'no-cache,must-revalidate' }],
-    ['meta', { 'http-quiv': 'expires', cotent: '0' }]
+    ['meta', { 'http-quiv': 'expires', cotent: '0' }],
+    // 引入jquery
+    ["script", {
+      "language": "javascript",
+      "type": "text/javascript",
+      "src": "https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"
+    }],
+    // 引入鼠标点击脚本
+    ["script", {
+      "language": "javascript",
+      "type": "text/javascript",
+      "src": "/js/MouseClickEffect.js"
+    }]
   ],
   serviceWorker: true, // 是否开启 PWA
   markdown: {
@@ -202,7 +214,77 @@ module.exports = {
     sidebarDepth: 2,//左侧导航显示的层级
     lastUpdated: 'Last Update'
   },
-  plugins: {
-    '@vuepress/back-to-top': true
-  }
+  plugins: [
+    [
+      "dynamic-title",
+      {
+        showIcon: "/images/photo.jpg",
+        showText: "(/≧▽≦/)咦！又好了！",
+        hideIcon: "/images/photo.jpg",
+        hideText: "(●—●)喔哟，崩溃啦！",
+        recoverTime: 2000
+      }
+    ],
+    ['@vuepress/pwa', {
+      serviceWorker: true,
+      updatePopup: {
+        message: "发现新内容可用",
+        buttonText: "刷新"
+      }
+    }],
+    ["vuepress-plugin-boxx"],
+    [
+      'vuepress-plugin-helper-live2d', {
+        // 是否开启控制台日志打印(default: false)
+        log: false,
+        live2d: {
+          // 是否启用(关闭请设置为false)(default: true)
+          enable: true,
+          // 模型名称(default: hibiki)>>>取值请参考：
+          // https://github.com/JoeyBling/hexo-theme-yilia-plus/wiki/live2d%E6%A8%A1%E5%9E%8B%E5%8C%85%E5%B1%95%E7%A4%BA
+          model: 'epsilon2_1',
+          display: {
+            position: "right", // 显示位置：left/right(default: 'right')
+            width: 135, // 模型的长度(default: 135)
+            height: 300, // 模型的高度(default: 300)
+            hOffset: 65, //  水平偏移(default: 65)
+            vOffset: 0, //  垂直偏移(default: 0)
+          },
+          mobile: {
+            show: true // 是否在移动设备上显示(default: false)
+          },
+          react: {
+            opacity: 0.8 // 模型透明度(default: 0.8)
+          }
+        }
+      }
+    ],
+    [
+      'meting', {
+        // metingApi: "https://meting.sigure.xyz/api/music",
+        meting: {
+          server: "netease",
+          type: "playlist",
+          mid: "5305929925",
+        },          // 不配置该项的话不会出现全局播放器
+        aplayer: {
+          fixed: true, //是否开启吸底模式
+          autoplay: false, //是否开启自动播放
+          lrcType: 3,  //设置 lrc 歌词解析模式,0：禁用 lrc 歌词，1：lrc 格式的字符串，3：lrc 文件 url
+          loop: "all", //设置播放器的初始循环模式
+        },
+        mobile: {
+          cover: true, //是否显示封面图，如果隐藏的话可以防止播放器遮挡移动设备上的文字内容
+          lrc: true  //是否显示歌词
+        }
+      }
+    ],
+    ["vuepress-plugin-nuggets-style-copy", {
+      copyText: "复制代码",
+      tip: {
+        content: "复制成功!"
+      }
+    }],
+
+  ]
 };
