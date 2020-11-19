@@ -59,7 +59,7 @@ module.exports = {
         text: '后端知识库',
         items: [
           { text: 'SpringBoot相关', link: '/study/springboot/springboot1' },
-          { text: 'SpringCloud相关', link: '/study/springcloud/springcloud1' },
+          { text: 'SpringCloud相关', link: '/study/springcloud/jenkins' },
           { text: 'Linux操作相关', link: '/study/linux/linux1' },
           { text: '软件和环境安装相关', link: '/study/env/env1' },
         ]
@@ -97,8 +97,8 @@ module.exports = {
           title: 'SpringCloud相关',
           collapsable: false,
           children: [
-            { title: '第一节', path: '/study/springcloud/springcloud1' },
-            { title: '第二节', path: '/study/springcloud/springcloud2' },
+            { title: 'Jenkins', path: '/study/springcloud/jenkins' },
+            { title: 'Docker', path: '/study/springcloud/docker' },
             { title: '第三节', path: '/study/springcloud/springcloud3' },
           ]
         }
@@ -211,7 +211,7 @@ module.exports = {
 
     },
     // sidebar: 'auto', // 侧边栏配置
-    sidebarDepth: 2,//左侧导航显示的层级
+    sidebarDepth: 3,//左侧导航显示的层级
     lastUpdated: 'Last Update'
   },
   plugins: [
