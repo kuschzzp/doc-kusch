@@ -50,7 +50,7 @@ module.exports = {
       {
         text: 'java相关',
         items: [
-          { text: 'java基础篇', link: '/java/base/base1' },
+          { text: 'java基础篇', link: '/java/base/javaReference' },
           { text: 'java进阶篇', link: '/java/advance/advance1' },
           { text: 'java冷知识', link: '/java/cold/cold1' }
         ]
@@ -188,7 +188,7 @@ module.exports = {
           title: 'java基础篇',
           collapsable: false,
           children: [
-            { title: '第一节', path: '/java/base/base1' },
+            { title: 'Java四种引用', path: '/java/base/javaReference' },
             { title: '第二节', path: '/java/base/base2' },
             { title: '第三节', path: '/java/base/base3' },
           ]
@@ -247,7 +247,7 @@ module.exports = {
             position: "right", // 显示位置：left/right(default: 'right')
             width: 135, // 模型的长度(default: 135)
             height: 300, // 模型的高度(default: 300)
-            hOffset: 65, //  水平偏移(default: 65)
+            hOffset: 10, //  水平偏移(default: 65)
             vOffset: 0, //  垂直偏移(default: 0)
           },
           mobile: {
