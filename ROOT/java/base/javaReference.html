@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>强引用, 软引用, 弱引用, 虚引用 | kusch的小破站</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    <link rel="icon" href="/doc-kusch/images/photo.jpg">
+    <link rel="manifest" href="/doc-kusch/images/photo.jpg">
+    <link rel="apple-touch-icon" href="/doc-kusch/images/photo.jpg">
+    <script language="javascript" type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/doc-kusch/js/MouseClickEffect.js"></script>
+    <meta name="description" content="JUST FOR FUN">
+    <meta http-quiv="pragma" cotent="no-cache">
+    <meta http-quiv="pragma" cotent="no-cache,must-revalidate">
+    <meta http-quiv="expires" cotent="0">
+    
+    <link rel="preload" href="/doc-kusch/assets/css/0.styles.6eae1f93.css" as="style"><link rel="preload" href="/doc-kusch/assets/js/app.65c52788.js" as="script"><link rel="preload" href="/doc-kusch/assets/js/2.6e8d2093.js" as="script"><link rel="preload" href="/doc-kusch/assets/js/29.2cb13ab5.js" as="script"><link rel="preload" href="/doc-kusch/assets/js/3.0d67d627.js" as="script"><link rel="prefetch" href="/doc-kusch/assets/js/10.3c0fda19.js"><link rel="prefetch" href="/doc-kusch/assets/js/11.958dc74f.js"><link rel="prefetch" href="/doc-kusch/assets/js/12.cff595d9.js"><link rel="prefetch" href="/doc-kusch/assets/js/13.7f4227e3.js"><link rel="prefetch" href="/doc-kusch/assets/js/14.67be832d.js"><link rel="prefetch" href="/doc-kusch/assets/js/15.bde76938.js"><link rel="prefetch" href="/doc-kusch/assets/js/16.5b032b2f.js"><link rel="prefetch" href="/doc-kusch/assets/js/17.9f56b122.js"><link rel="prefetch" href="/doc-kusch/assets/js/18.b0424534.js"><link rel="prefetch" href="/doc-kusch/assets/js/19.a11872b5.js"><link rel="prefetch" href="/doc-kusch/assets/js/20.7d4b4967.js"><link rel="prefetch" href="/doc-kusch/assets/js/21.a9bd409c.js"><link rel="prefetch" href="/doc-kusch/assets/js/22.08bc4f04.js"><link rel="prefetch" href="/doc-kusch/assets/js/23.e8571211.js"><link rel="prefetch" href="/doc-kusch/assets/js/24.144e33c2.js"><link rel="prefetch" href="/doc-kusch/assets/js/25.af87cdbb.js"><link rel="prefetch" href="/doc-kusch/assets/js/26.34ce8144.js"><link rel="prefetch" href="/doc-kusch/assets/js/27.da401dee.js"><link rel="prefetch" href="/doc-kusch/assets/js/28.7ee374d2.js"><link rel="prefetch" href="/doc-kusch/assets/js/30.487bb793.js"><link rel="prefetch" href="/doc-kusch/assets/js/31.5192535d.js"><link rel="prefetch" href="/doc-kusch/assets/js/32.d025e200.js"><link rel="prefetch" href="/doc-kusch/assets/js/33.4c34a32e.js"><link rel="prefetch" href="/doc-kusch/assets/js/34.b62b4fda.js"><link rel="prefetch" href="/doc-kusch/assets/js/35.a289dbde.js"><link rel="prefetch" href="/doc-kusch/assets/js/36.46b92cf6.js"><link rel="prefetch" href="/doc-kusch/assets/js/37.616fc911.js"><link rel="prefetch" href="/doc-kusch/assets/js/38.fc12e5c7.js"><link rel="prefetch" href="/doc-kusch/assets/js/39.d5c66216.js"><link rel="prefetch" href="/doc-kusch/assets/js/4.9811ea41.js"><link rel="prefetch" href="/doc-kusch/assets/js/40.fd111197.js"><link rel="prefetch" href="/doc-kusch/assets/js/41.3bc4d93a.js"><link rel="prefetch" href="/doc-kusch/assets/js/42.1639e887.js"><link rel="prefetch" href="/doc-kusch/assets/js/43.a09d94ea.js"><link rel="prefetch" href="/doc-kusch/assets/js/44.ac45edab.js"><link rel="prefetch" href="/doc-kusch/assets/js/45.6daa747b.js"><link rel="prefetch" href="/doc-kusch/assets/js/46.4bdb347a.js"><link rel="prefetch" href="/doc-kusch/assets/js/47.7f3b2add.js"><link rel="prefetch" href="/doc-kusch/assets/js/48.463dd12f.js"><link rel="prefetch" href="/doc-kusch/assets/js/49.43df8012.js"><link rel="prefetch" href="/doc-kusch/assets/js/5.8293bd5e.js"><link rel="prefetch" href="/doc-kusch/assets/js/50.19108a6f.js"><link rel="prefetch" href="/doc-kusch/assets/js/6.d730d013.js"><link rel="prefetch" href="/doc-kusch/assets/js/7.595cbe73.js"><link rel="prefetch" href="/doc-kusch/assets/js/8.d3fd6c4c.js"><link rel="prefetch" href="/doc-kusch/assets/js/9.1677dedb.js">
+    <link rel="stylesheet" href="/doc-kusch/assets/css/0.styles.6eae1f93.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/doc-kusch/" class="home-link router-link-active"><!----> <span class="site-name">kusch的小破站</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/doc-kusch/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端相关" class="dropdown-title"><span class="title">前端相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端相关" class="mobile-dropdown-title"><span class="title">前端相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/front/frontbase/base1.html" class="nav-link">
+  前端基础篇
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/front/frontmiddle/middle1.html" class="nav-link">
+  前端进阶篇
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构与算法" class="dropdown-title"><span class="title">数据结构与算法</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构与算法" class="mobile-dropdown-title"><span class="title">数据结构与算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/algorithm/common/common1.html" class="nav-link">
+  简单排序与查找
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/algorithm/structure/structure1.html" class="nav-link">
+  常见数据结构
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/java/base/javaReference.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  java基础篇
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/java/advance/advance1.html" class="nav-link">
+  java进阶篇
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/java/cold/cold1.html" class="nav-link">
+  java冷知识
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端知识库" class="dropdown-title"><span class="title">后端知识库</span> <span class="arrow down"></span></button> <button type="button" aria-label="后端知识库" class="mobile-dropdown-title"><span class="title">后端知识库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/study/springboot/springboot1.html" class="nav-link">
+  SpringBoot相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/springcloud/jenkins.html" class="nav-link">
+  SpringCloud相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/linux/linux1.html" class="nav-link">
+  Linux操作相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/env/env1.html" class="nav-link">
+  软件和环境安装相关
+</a></li></ul></div></div><div class="nav-item"><a href="/doc-kusch/others/" class="nav-link">
+  诗和远方
+</a></div><div class="nav-item"><a href="https://www.superkusch.fun" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  其他
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/doc-kusch/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端相关" class="dropdown-title"><span class="title">前端相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端相关" class="mobile-dropdown-title"><span class="title">前端相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/front/frontbase/base1.html" class="nav-link">
+  前端基础篇
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/front/frontmiddle/middle1.html" class="nav-link">
+  前端进阶篇
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据结构与算法" class="dropdown-title"><span class="title">数据结构与算法</span> <span class="arrow down"></span></button> <button type="button" aria-label="数据结构与算法" class="mobile-dropdown-title"><span class="title">数据结构与算法</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/algorithm/common/common1.html" class="nav-link">
+  简单排序与查找
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/algorithm/structure/structure1.html" class="nav-link">
+  常见数据结构
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/java/base/javaReference.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  java基础篇
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/java/advance/advance1.html" class="nav-link">
+  java进阶篇
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/java/cold/cold1.html" class="nav-link">
+  java冷知识
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端知识库" class="dropdown-title"><span class="title">后端知识库</span> <span class="arrow down"></span></button> <button type="button" aria-label="后端知识库" class="mobile-dropdown-title"><span class="title">后端知识库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/study/springboot/springboot1.html" class="nav-link">
+  SpringBoot相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/springcloud/jenkins.html" class="nav-link">
+  SpringCloud相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/linux/linux1.html" class="nav-link">
+  Linux操作相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/env/env1.html" class="nav-link">
+  软件和环境安装相关
+</a></li></ul></div></div><div class="nav-item"><a href="/doc-kusch/others/" class="nav-link">
+  诗和远方
+</a></div><div class="nav-item"><a href="https://www.superkusch.fun" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  其他
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>java基础篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/doc-kusch/java/base/javaReference.html" aria-current="page" class="active sidebar-link">Java四种引用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/doc-kusch/java/base/javaReference.html#强引用-默认" class="sidebar-link">强引用（默认）</a></li><li class="sidebar-sub-header"><a href="/doc-kusch/java/base/javaReference.html#软引用-softreference" class="sidebar-link">软引用（SoftReference）</a></li><li class="sidebar-sub-header"><a href="/doc-kusch/java/base/javaReference.html#弱引用-weakreference" class="sidebar-link">弱引用（WeakReference）</a></li><li class="sidebar-sub-header"><a href="/doc-kusch/java/base/javaReference.html#虚引用-phantomreference" class="sidebar-link">虚引用（PhantomReference）</a></li></ul></li><li><a href="/doc-kusch/java/base/base2.html" class="sidebar-link">第二节</a></li><li><a href="/doc-kusch/java/base/base3.html" class="sidebar-link">第三节</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="强引用、软引用、弱引用和虚引用"><a href="#强引用、软引用、弱引用和虚引用" class="header-anchor">#</a> 强引用、软引用、弱引用和虚引用</h1> <h2 id="强引用-默认"><a href="#强引用-默认" class="header-anchor">#</a> 强引用（默认）</h2> <p>Java中默认声明的就是强引用，比如:</p> <div class="language-java line-numbers-mode"><pre class="language-java"><code><span class="token class-name">Teacher</span> t <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Teacher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+t <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>此时只要t指向Teacher对象，Teacher对象就不会被回收，只要强引用存在，垃圾回收器将永远不会回收被引用的对象，哪怕内存不足时，JVM也会直接抛出 <code>OutOfMemoryError（OOM）</code> ，不会去回收。如果想中断强引用与对象之间的联系，可以显示的将强引用赋值为null，这样一来，JVM就可以适时的回收对象了。</p> <h2 id="软引用-softreference"><a href="#软引用-softreference" class="header-anchor">#</a> 软引用（SoftReference）</h2> <p>在内存足够的时候，软引用对象不会被回收，只有在内存不足时，系统则会回收软引用对象，如果回收了软引用对象之后仍然没有足够的内存，才会抛出内存溢出异常。这种特性常常被用来实现缓存技术。</p> <h2 id="弱引用-weakreference"><a href="#弱引用-weakreference" class="header-anchor">#</a> 弱引用（WeakReference）</h2> <p>无论内存是否足够，只要 JVM 开始进行垃圾回收，那些被弱引用关联的对象都会被回收。</p> <h2 id="虚引用-phantomreference"><a href="#虚引用-phantomreference" class="header-anchor">#</a> 虚引用（PhantomReference）</h2> <p>虚引用和前面的软引用、弱引用不同，它并不影响对象的生命周期。在java中用 <code>java.lang.ref.PhantomReference</code> 类表示。如果一个对象与虚引用关联，则跟没有引用与之关联一样，在任何时候都可能被垃圾回收器回收。<br>
+　　要注意的是，虚引用必须和引用队列关联使用，当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会把这个虚引用加入到与之 关联的引用队列中。程序可以通过判断引用队列中是否已经加入了虚引用，来了解被引用的对`象是否将要被垃圾回收。如果程序发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/doc-kusch/java/base/base2.html">
+        第二节
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><div></div><!----><div id="live2d-widget" class="live2d-widget-container" style="position:fixed;right:10px;bottom:0px;width:135px;height:300px;z-index:99999;opacity:0.8;pointer-events:none;"><canvas id="live2d_canvas" width="135" height="300" class="live2d_canvas" style="position:absolute;left:0px;top:0px;width:135px;height:300px;"></canvas></div><APlayer audio="" fixed="true" autoplay="autoplay" theme="#b7daff" loop="loop" order="list" preload="auto" volume="0.7" mutex="true" lrc-type="3" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer></div></div>
+    <script src="/doc-kusch/assets/js/app.65c52788.js" defer></script><script src="/doc-kusch/assets/js/2.6e8d2093.js" defer></script><script src="/doc-kusch/assets/js/29.2cb13ab5.js" defer></script><script src="/doc-kusch/assets/js/3.0d67d627.js" defer></script>
+  </body>
+</html>
