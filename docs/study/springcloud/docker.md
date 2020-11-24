@@ -5,24 +5,26 @@ top: false
 summary: Docker安装
 categories: Markdown
 tags:
-  - docker
+
+  + Docker
+  + Markdown
+
 ---
 
 # Docker安装
 
 ## 一: 安装
 
+1. **安装依赖包**
+
 ::: tip 注意
 在新主机首次安装 Docker Engine-Community之前，需要设置Docker仓库，之后，您可以从仓库安装和更新 Docker。  
-
 设置仓库，需要安装所需的软件包。yum-utils 提供了 yum-config-manager ，并且 device mapper 存储驱动程序需要   device-mapper-persistent-data 和 lvm2。
 :::
-  
-1. **安装依赖包**
 
 ``` shell
  sudo yum install -y yum-utils device-mapper-persistent-data lvm2 
- ```
+```
 
 2. **设置阿里云镜像**
 
@@ -145,16 +147,3 @@ docer -p hostPort:containerPort # 映射本机的指定端口到容器的指定�
 ```shell
 docker -v /home/data:/opt/data # 这里/home/data 指的是宿主机的目录地址，后者则是容器的目录地址
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
