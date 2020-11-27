@@ -60,7 +60,7 @@ module.exports = {
         items: [
           { text: 'SpringBoot相关', link: '/study/springboot/springboot1' },
           { text: 'SpringCloud相关', link: '/study/springcloud/jenkins' },
-          { text: 'Linux操作相关', link: '/study/linux/linux1' },
+          { text: 'Linux操作相关', link: '/study/linux/centOS7Network' },
           { text: '软件和环境安装相关', link: '/study/env/env1' },
         ]
       },
@@ -108,7 +108,7 @@ module.exports = {
           title: 'Linux操作相关',
           collapsable: false,
           children: [
-            { title: '第一节', path: '/study/linux/linux1' },
+            { title: '第一节', path: '/study/linux/centOS7Network' },
             { title: '第二节', path: '/study/linux/linux2' },
             { title: '第三节', path: '/study/linux/linux3' },
           ]
@@ -265,7 +265,7 @@ module.exports = {
         meting: {
           server: "netease",
           type: "playlist",
-          mid: "5305929925",
+          mid: "5218934316",
         },          // 不配置该项的话不会出现全局播放器
         aplayer: {
           fixed: true, //是否开启吸底模式
