@@ -36,7 +36,7 @@ module.exports = {
       {
         text: '前端相关',
         items: [
-          { text: '前端基础篇', link: '/front/frontbase/base1' },
+          { text: '前端基础篇', link: '/front/frontbase/frontEnv' },
           { text: '前端进阶篇', link: '/front/frontmiddle/middle1' }
         ]
       },
@@ -131,7 +131,7 @@ module.exports = {
           title: '前端基础篇',
           collapsable: false,
           children: [
-            { title: '第一节', path: '/front/frontbase/base1' },
+            { title: '第一节', path: '/front/frontbase/frontEnv' },
             { title: '第二节', path: '/front/frontbase/base2' },
             { title: '第三节', path: '/front/frontbase/base3' },
           ]
