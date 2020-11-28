@@ -131,8 +131,8 @@ module.exports = {
           title: '前端基础篇',
           collapsable: false,
           children: [
-            { title: '第一节', path: '/front/frontbase/frontEnv' },
-            { title: '第二节', path: '/front/frontbase/base2' },
+            { title: '开发环境安装', path: '/front/frontbase/frontEnv' },
+            { title: 'vuepress的初步搭建', path: '/front/frontbase/createvuepress' },
             { title: '第三节', path: '/front/frontbase/base3' },
           ]
         }
@@ -151,7 +151,7 @@ module.exports = {
 
       '/algorithm/common/': [
         {
-          title: '前端基础篇',
+          title: '简单排序与查找',
           collapsable: false,
           children: [
             { title: '第一节', path: '/algorithm/common/common1' },
@@ -162,7 +162,7 @@ module.exports = {
       ],
       '/algorithm/structure/': [
         {
-          title: '前端进阶篇',
+          title: '常见数据结构',
           collapsable: false,
           children: [
             { title: '第一节', path: '/algorithm/structure/structure1' },
