@@ -108,8 +108,8 @@ module.exports = {
           title: 'Linux操作相关',
           collapsable: false,
           children: [
-            { title: '第一节', path: '/study/linux/centOS7Network' },
-            { title: '第二节', path: '/study/linux/linux2' },
+            { title: 'centos7 mini网络设置', path: '/study/linux/centOS7Network' },
+            { title: 'Nginx安装', path: '/study/linux/centOSNginx' },
             { title: '第三节', path: '/study/linux/linux3' },
           ]
         }
