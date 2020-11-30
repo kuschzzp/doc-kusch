@@ -65,6 +65,7 @@ module.exports = {
         ]
       },
       { text: '诗和远方', link: '/others/' },
+      { text: '遇见神坑', link: '/bugs/' },
       { text: '其他', link: 'https://www.superkusch.fun' }
     ],
     // 为以下路由添加左侧边栏
@@ -80,7 +81,17 @@ module.exports = {
           ]
         }
       ],
-
+      '/bugs/': [
+        {
+          title: '遇见神坑',
+          collapsable: false,
+          children: [
+            { title: 'Nginx部署Vuepress问题', path: '/bugs/vuepressNginx' },
+            { title: '神坑02', path: '/bugs/bugs2' },
+            { title: '神坑03', path: '/bugs/bugs3' },
+          ]
+        }
+      ],
       '/study/springboot/': [
         {
           title: 'SpringBoot相关',
