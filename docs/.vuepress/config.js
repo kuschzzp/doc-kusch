@@ -200,7 +200,7 @@ module.exports = {
           collapsable: false,
           children: [
             { title: 'Java四种引用', path: '/java/base/javaReference' },
-            { title: '第二节', path: '/java/base/base2' },
+            { title: '深拷贝和浅拷贝', path: '/java/base/javaClone' },
             { title: '第三节', path: '/java/base/base3' },
           ]
         }

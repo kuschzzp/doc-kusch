@@ -10,7 +10,7 @@ sidebarDepth: 4
 主要是为了自己时不时心血来潮想写博客。For Fun!
 :::
 
-### 记录一下插件网站
+## 记录一下插件网站
 
 1. https://zpj80231.gitee.io/znote/views/front-end/vuepress-plugin-boxx.html
 
@@ -59,10 +59,16 @@ sidebarDepth: 4
 图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加
 ```
 
-### 生成文件树方式
+## 生成文件树方式
 
 `cd` 到你的文件夹下面，使用如下命令即可，查看 `a.txt` 里面就是你要的东西
 
 ``` 
 tree /f > a.txt 
 ```
+
+
+## 内部文件跳转写法
+::: tip 提示
+关于流的关闭方式，请见[点击这里](../java/cold/cold1.md)
+:::
