@@ -3,7 +3,7 @@ module.exports = {
   description: 'JUST FOR FUN',
   base: '/doc-kusch/',   // 设置站点根路径
   // port: 8080,
-  search: true,  //开启搜索框
+  search: false,  //开启搜索框
   searchMaxSuggestions: 10, //调整默认搜索框显示的搜索结果数量
   dest: './ROOT',  // 设置build后的输出目录
   head: [ // 注入到当前页面的 HTML <head> 中的标签
@@ -52,7 +52,8 @@ module.exports = {
         items: [
           { text: 'java基础篇', link: '/java/base/javaReference' },
           { text: 'java进阶篇', link: '/java/advance/advance1' },
-          { text: 'java冷知识', link: '/java/cold/cold1' }
+          { text: 'java冷知识', link: '/java/cold/cold1' },
+          { text: 'java设计模式', link: '/java/designpattern/singleton' }
         ]
       },
       {
@@ -201,7 +202,8 @@ module.exports = {
           children: [
             { title: 'Java四种引用', path: '/java/base/javaReference' },
             { title: '深拷贝和浅拷贝', path: '/java/base/javaClone' },
-            { title: '第三节', path: '/java/base/base3' },
+            { title: 'Volatile关键字及重排序', path: '/java/base/volatile' },
+            { title: '基础', path: '/java/base/base4'},
           ]
         }
       ],
@@ -216,7 +218,15 @@ module.exports = {
           ]
         }
       ],
-
+      '/java/designpattern/': [
+        {
+          title: 'java设计模式',
+          collapsable: false,
+          children: [
+            { title: '单例模式', path: '/java/designpattern/singleton' }
+          ]
+        }
+      ],
 
 
 
