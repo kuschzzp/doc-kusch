@@ -62,7 +62,7 @@ module.exports = {
           { text: 'SpringBoot相关', link: '/study/springboot/springboot1' },
           { text: 'SpringCloud相关', link: '/study/springcloud/jenkins' },
           { text: 'Linux操作相关', link: '/study/linux/centOS7Network' },
-          { text: '软件和环境安装相关', link: '/study/env/env1' },
+          { text: '软件和环境安装相关', link: '/study/env/mysql57' },
         ]
       },
       { text: '诗和远方', link: '/others/' },
@@ -131,7 +131,7 @@ module.exports = {
           title: '软件和环境安装相关',
           collapsable: false,
           children: [
-            { title: '第一节', path: '/study/env/env1' },
+            { title: 'Linux下安装Mysql', path: '/study/env/mysql57' },
             { title: '第二节', path: '/study/env/env2' },
             { title: '第三节', path: '/study/env/env3' },
           ]
