@@ -63,6 +63,7 @@ module.exports = {
           { text: 'SpringCloud相关', link: '/study/springcloud/jenkins' },
           { text: 'Linux操作相关', link: '/study/linux/centOS7Network' },
           { text: '软件和环境安装相关', link: '/study/env/mysql57' },
+          { text: '数据库相关', link: '/study/database/databaseIndex' },
         ]
       },
       { text: '诗和远方', link: '/others/' },
@@ -137,6 +138,16 @@ module.exports = {
           ]
         }
       ],
+      '/study/database/': [
+        {
+          title: '数据库相关',
+          collapsable: false,
+          children: [
+            { title: '数据库索引', path: '/study/database/databaseIndex' },
+            { title: '第二节', path: '/study/database/database2' },
+          ]
+        }
+      ],
 
       '/front/frontbase/': [
         {
@@ -203,7 +214,8 @@ module.exports = {
             { title: 'Java四种引用', path: '/java/base/javaReference' },
             { title: '深拷贝和浅拷贝', path: '/java/base/javaClone' },
             { title: 'Volatile关键字及重排序', path: '/java/base/volatile' },
-            { title: '基础', path: '/java/base/base4'},
+            { title: '常见运算符', path: '/java/base/operator'},
+            { title: '占位', path:'/java/base/base4'}
           ]
         }
       ],
