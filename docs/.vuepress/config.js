@@ -123,7 +123,8 @@ module.exports = {
           children: [
             { title: 'centos7 mini网络设置', path: '/study/linux/centOS7Network' },
             { title: 'Nginx安装', path: '/study/linux/centOSNginx' },
-            { title: '第三节', path: '/study/linux/linux3' },
+            { title: 'Docker安装xxl-job', path: '/study/linux/xxlJobDocker' },
+            { title: '占位节', path: '/study/linux/linux3' },
           ]
         }
       ],
