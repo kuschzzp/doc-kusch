@@ -124,6 +124,7 @@ module.exports = {
             { title: 'centos7 mini网络设置', path: '/study/linux/centOS7Network' },
             { title: 'Nginx安装', path: '/study/linux/centOSNginx' },
             { title: 'Docker安装xxl-job', path: '/study/linux/xxlJobDocker' },
+            { title: 'Docker安装redis', path: '/study/linux/redisDocker' },
             { title: '占位节', path: '/study/linux/linux3' },
           ]
         }
