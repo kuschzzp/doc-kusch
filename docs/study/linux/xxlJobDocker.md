@@ -25,7 +25,7 @@ docker pull xuxueli/xxl-job-admin:2.2.0
 - 执行时的参数参数说明
 
 ```
-docker run -d -p 8481:8777 -v /home/zzp/dockerlogshere:/data/applogs --name xxl-job-kusch001 -e PARAMS="--spring.datasource.url=jdbc:mysql://49.235.29.74:3306/blog?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=UTC --spring.datasource.username=blog --spring.datasource.password=5PrzmTcJ3LPR8RNA --spring.datasource.driver-class-name=com.mysql.jdbc.Driver --spring.mail.host=smtp.qq.com --spring.mail.username=1526938209@qq.com --spring.mail.from=1526938209@qq.com --spring.mail.password=zsgpdnvdcetxjcje --server.port=8777"  xuxueli/xxl-job-admin:2.2.0
+docker run -d -p 8481:8777 -v /home/zzp/dockerlogshere:/data/applogs --name xxl-job-kusch001 -e PARAMS="--spring.datasource.url=你的数据库URL --spring.datasource.username=你的数据库用户名 --spring.datasource.password=你的数据库密码 --spring.datasource.driver-class-name=你的数据库驱动 --spring.mail.host=smtp.qq.com --spring.mail.username=你的QQ邮箱 --spring.mail.from=你的QQ邮箱 --spring.mail.password=你的QQ邮箱授权码 --server.port=8777"  xuxueli/xxl-job-admin:2.2.0
 ```
 
 :::tip
