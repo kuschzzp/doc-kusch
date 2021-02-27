@@ -59,7 +59,7 @@ module.exports = {
       {
         text: '后端知识库',
         items: [
-          { text: 'SpringBoot相关', link: '/study/springboot/springboot1' },
+          { text: 'SpringBoot相关', link: '/study/springboot/springsecurity1' },
           { text: 'SpringCloud相关', link: '/study/springcloud/jenkins' },
           { text: 'Linux操作相关', link: '/study/linux/centOS7Network' },
           { text: '软件和环境安装相关', link: '/study/env/mysql57' },
@@ -99,7 +99,7 @@ module.exports = {
           title: 'SpringBoot相关',
           collapsable: false,
           children: [
-            { title: '第一节', path: '/study/springboot/springboot1' },
+            { title: '第一节', path: '/study/springboot/springsecurity1' },
             { title: '第二节', path: '/study/springboot/springboot2' },
             { title: '第三节', path: '/study/springboot/springboot3' },
           ]
