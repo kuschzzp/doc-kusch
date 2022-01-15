@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Shell学习向一个sh文件写入内容并执行 | kusch的小破站</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    <link rel="icon" href="/doc-kusch/images/photo.jpg">
+    <link rel="manifest" href="/doc-kusch/images/photo.jpg">
+    <link rel="apple-touch-icon" href="/doc-kusch/images/photo.jpg">
+    <script language="javascript" type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/doc-kusch/js/MouseClickEffect.js"></script>
+    <meta name="description" content="JUST FOR FUN">
+    <meta http-quiv="pragma" cotent="no-cache">
+    <meta http-quiv="pragma" cotent="no-cache,must-revalidate">
+    <meta http-quiv="expires" cotent="0">
+    
+    <link rel="preload" href="/doc-kusch/assets/css/0.styles.8eeade1e.css" as="style"><link rel="preload" href="/doc-kusch/assets/js/app.9ad9cd00.js" as="script"><link rel="preload" href="/doc-kusch/assets/js/2.49a801db.js" as="script"><link rel="preload" href="/doc-kusch/assets/js/37.b5e9c189.js" as="script"><link rel="preload" href="/doc-kusch/assets/js/4.51a1e0b9.js" as="script"><link rel="prefetch" href="/doc-kusch/assets/js/10.30ede1bd.js"><link rel="prefetch" href="/doc-kusch/assets/js/11.1aa3e276.js"><link rel="prefetch" href="/doc-kusch/assets/js/12.9230a6db.js"><link rel="prefetch" href="/doc-kusch/assets/js/13.2dec8a9c.js"><link rel="prefetch" href="/doc-kusch/assets/js/14.d791562c.js"><link rel="prefetch" href="/doc-kusch/assets/js/15.5769b70f.js"><link rel="prefetch" href="/doc-kusch/assets/js/16.1773e019.js"><link rel="prefetch" href="/doc-kusch/assets/js/17.c4b761bd.js"><link rel="prefetch" href="/doc-kusch/assets/js/18.ce572963.js"><link rel="prefetch" href="/doc-kusch/assets/js/19.4d47bed1.js"><link rel="prefetch" href="/doc-kusch/assets/js/20.7c3a9645.js"><link rel="prefetch" href="/doc-kusch/assets/js/21.b2de7baa.js"><link rel="prefetch" href="/doc-kusch/assets/js/22.77af008b.js"><link rel="prefetch" href="/doc-kusch/assets/js/23.c1141b8d.js"><link rel="prefetch" href="/doc-kusch/assets/js/24.dfe80ea8.js"><link rel="prefetch" href="/doc-kusch/assets/js/25.2c73d534.js"><link rel="prefetch" href="/doc-kusch/assets/js/26.183e8bad.js"><link rel="prefetch" href="/doc-kusch/assets/js/27.a849765c.js"><link rel="prefetch" href="/doc-kusch/assets/js/28.03b792fa.js"><link rel="prefetch" href="/doc-kusch/assets/js/29.b72d5dbc.js"><link rel="prefetch" href="/doc-kusch/assets/js/3.da478b0d.js"><link rel="prefetch" href="/doc-kusch/assets/js/30.42ba00f5.js"><link rel="prefetch" href="/doc-kusch/assets/js/31.93deae39.js"><link rel="prefetch" href="/doc-kusch/assets/js/32.570442f5.js"><link rel="prefetch" href="/doc-kusch/assets/js/33.e7ebd55e.js"><link rel="prefetch" href="/doc-kusch/assets/js/34.d5a2bd87.js"><link rel="prefetch" href="/doc-kusch/assets/js/35.89371f36.js"><link rel="prefetch" href="/doc-kusch/assets/js/36.b3c86630.js"><link rel="prefetch" href="/doc-kusch/assets/js/38.fb1ede21.js"><link rel="prefetch" href="/doc-kusch/assets/js/39.1df8e6a6.js"><link rel="prefetch" href="/doc-kusch/assets/js/40.d335d6e9.js"><link rel="prefetch" href="/doc-kusch/assets/js/41.5d1177dd.js"><link rel="prefetch" href="/doc-kusch/assets/js/42.ddff23f4.js"><link rel="prefetch" href="/doc-kusch/assets/js/43.8684d5cb.js"><link rel="prefetch" href="/doc-kusch/assets/js/5.0d652a52.js"><link rel="prefetch" href="/doc-kusch/assets/js/6.df13eaf9.js"><link rel="prefetch" href="/doc-kusch/assets/js/7.5bb317d7.js"><link rel="prefetch" href="/doc-kusch/assets/js/8.29dd3501.js"><link rel="prefetch" href="/doc-kusch/assets/js/9.5a925a11.js">
+    <link rel="stylesheet" href="/doc-kusch/assets/css/0.styles.8eeade1e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/doc-kusch/" class="home-link router-link-active"><!----> <span class="site-name">kusch的小破站</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/doc-kusch/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端相关" class="dropdown-title"><span class="title">前端相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端相关" class="mobile-dropdown-title"><span class="title">前端相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/front/frontbase/frontEnv.html" class="nav-link">
+  知识
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/front/frontmiddle/middle1.html" class="nav-link">
+  问题记录
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/java/base/javaReference.html" class="nav-link">
+  java基础篇
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/java/designpattern/singleton.html" class="nav-link">
+  java设计模式
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端知识库" class="dropdown-title"><span class="title">后端知识库</span> <span class="arrow down"></span></button> <button type="button" aria-label="后端知识库" class="mobile-dropdown-title"><span class="title">后端知识库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/study/springboot/springboot1.html" class="nav-link">
+  SpringBoot相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/springcloud/jenkins.html" class="nav-link">
+  SpringCloud相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/linux/centOS7Network.html" class="nav-link">
+  Linux操作相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/env/mysql57.html" class="nav-link">
+  软件和环境安装相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/database/databaseIndex.html" class="nav-link">
+  数据库相关
+</a></li></ul></div></div><div class="nav-item"><a href="/doc-kusch/others/" class="nav-link">
+  诗和远方
+</a></div><div class="nav-item"><a href="/doc-kusch/bugs/" class="nav-link">
+  遇见神坑
+</a></div><div class="nav-item"><a href="https://www.superkusch.fun" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  其他
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/doc-kusch/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端相关" class="dropdown-title"><span class="title">前端相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="前端相关" class="mobile-dropdown-title"><span class="title">前端相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/front/frontbase/frontEnv.html" class="nav-link">
+  知识
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/front/frontmiddle/middle1.html" class="nav-link">
+  问题记录
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="java相关" class="dropdown-title"><span class="title">java相关</span> <span class="arrow down"></span></button> <button type="button" aria-label="java相关" class="mobile-dropdown-title"><span class="title">java相关</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/java/base/javaReference.html" class="nav-link">
+  java基础篇
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/java/designpattern/singleton.html" class="nav-link">
+  java设计模式
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端知识库" class="dropdown-title"><span class="title">后端知识库</span> <span class="arrow down"></span></button> <button type="button" aria-label="后端知识库" class="mobile-dropdown-title"><span class="title">后端知识库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/doc-kusch/study/springboot/springboot1.html" class="nav-link">
+  SpringBoot相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/springcloud/jenkins.html" class="nav-link">
+  SpringCloud相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/linux/centOS7Network.html" class="nav-link">
+  Linux操作相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/env/mysql57.html" class="nav-link">
+  软件和环境安装相关
+</a></li><li class="dropdown-item"><!----> <a href="/doc-kusch/study/database/databaseIndex.html" class="nav-link">
+  数据库相关
+</a></li></ul></div></div><div class="nav-item"><a href="/doc-kusch/others/" class="nav-link">
+  诗和远方
+</a></div><div class="nav-item"><a href="/doc-kusch/bugs/" class="nav-link">
+  遇见神坑
+</a></div><div class="nav-item"><a href="https://www.superkusch.fun" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  其他
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Linux操作相关</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/doc-kusch/study/linux/centOS7Network.html" class="sidebar-link">centos7 mini网络设置</a></li><li><a href="/doc-kusch/study/linux/centOSNginx.html" class="sidebar-link">Nginx安装</a></li><li><a href="/doc-kusch/study/linux/xxlJobDocker.html" class="sidebar-link">Docker安装xxl-job</a></li><li><a href="/doc-kusch/study/linux/redisDocker.html" class="sidebar-link">Docker安装redis</a></li><li><a href="/doc-kusch/study/linux/shellstudy.html" aria-current="page" class="active sidebar-link">Shell脚本使用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/doc-kusch/study/linux/shellstudy.html#本次学习最终效果描述" class="sidebar-link">本次学习最终效果描述</a></li><li class="sidebar-sub-header"><a href="/doc-kusch/study/linux/shellstudy.html#最终代码" class="sidebar-link">最终代码</a></li><li class="sidebar-sub-header"><a href="/doc-kusch/study/linux/shellstudy.html#代码描述" class="sidebar-link">代码描述</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/doc-kusch/study/linux/shellstudy.html#第一段" class="sidebar-link">第一段</a></li><li class="sidebar-sub-header"><a href="/doc-kusch/study/linux/shellstudy.html#第二段" class="sidebar-link">第二段</a></li><li class="sidebar-sub-header"><a href="/doc-kusch/study/linux/shellstudy.html#第三段" class="sidebar-link">第三段</a></li></ul></li><li class="sidebar-sub-header"><a href="/doc-kusch/study/linux/shellstudy.html#知识补充" class="sidebar-link">知识补充</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/doc-kusch/study/linux/shellstudy.html#上述if语法说明" class="sidebar-link">上述if语法说明</a></li><li class="sidebar-sub-header"><a href="/doc-kusch/study/linux/shellstudy.html#补充for循环" class="sidebar-link">补充for循环</a></li><li class="sidebar-sub-header"><a href="/doc-kusch/study/linux/shellstudy.html#补充while循环" class="sidebar-link">补充while循环</a></li><li class="sidebar-sub-header"><a href="/doc-kusch/study/linux/shellstudy.html#补充case语句" class="sidebar-link">补充case语句</a></li></ul></li></ul></li><li><a href="/doc-kusch/study/linux/linux3.html" class="sidebar-link">占位节</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="shell学习向一个sh文件写入内容并执行"><a href="#shell学习向一个sh文件写入内容并执行" class="header-anchor">#</a> Shell学习向一个sh文件写入内容并执行</h1> <h2 id="本次学习最终效果描述"><a href="#本次学习最终效果描述" class="header-anchor">#</a> 本次学习最终效果描述</h2> <p>执行<code>check.sh</code>将向<code>test.sh</code>中写入命令并执行</p> <h2 id="最终代码"><a href="#最终代码" class="header-anchor">#</a> 最终代码</h2> <p><code>check.sh</code></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token shebang important">#!/bin/bash</span>
+<span class="token assign-left variable">file</span><span class="token operator">=</span><span class="token string">&quot;null&quot;</span>
+
+<span class="token comment">#接受参数</span>
+<span class="token keyword">while</span> <span class="token builtin class-name">getopts</span> f: OPT<span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token keyword">case</span> <span class="token variable">${OPT}</span> <span class="token keyword">in</span>
+  f<span class="token punctuation">)</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;in====&gt;&quot;</span> <span class="token variable">${OPTARG}</span> 
+    <span class="token assign-left variable">file</span><span class="token operator">=</span><span class="token variable">${OPTARG}</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">\</span>?<span class="token punctuation">)</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">&quot;仅支持参数：-f &quot;</span>
+  <span class="token builtin class-name">exit</span> <span class="token number">1</span>
+  <span class="token keyword">esac</span>
+<span class="token keyword">done</span>
+<span class="token comment">#判断</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -e <span class="token variable">${file}</span> <span class="token punctuation">]</span>
+<span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -w <span class="token variable">${file}</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;文件 <span class="token variable">${file}</span> 可以写入！开始写入信息====》&quot;</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;echo 'Hello world!' &quot;</span> <span class="token operator">&gt;&gt;</span> <span class="token variable">${file}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> -x <span class="token variable">${file}</span> <span class="token punctuation">]</span>
+        <span class="token keyword">then</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">&quot;文件可以执行！正在执行====》&quot;</span> 
+            <span class="token function">sh</span> <span class="token variable">${file}</span>
+        <span class="token keyword">else</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">&quot;文件 <span class="token variable">${file}</span>  不可以执行！请赋予权限: chmod +x <span class="token variable">${file}</span>&quot;</span>
+        <span class="token keyword">fi</span>
+    <span class="token keyword">else</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;文件 <span class="token variable">${file}</span> 不可以写入，请赋予权限！&quot;</span>
+    <span class="token keyword">fi</span>
+<span class="token keyword">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;文件 <span class="token variable">${file}</span> 不存在！&quot;</span>
+<span class="token keyword">fi</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br></div></div><p>执行命令<code>./check.sh -f /opt/testbash/test.sh</code></p> <h2 id="代码描述"><a href="#代码描述" class="header-anchor">#</a> 代码描述</h2> <h3 id="第一段"><a href="#第一段" class="header-anchor">#</a> 第一段</h3> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token shebang important">#!/bin/bash</span>
+<span class="token assign-left variable">file</span><span class="token operator">=</span><span class="token string">&quot;null&quot;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>声明一个<code>file</code>变量后续接受输入参数</p> <p>补充：声明变量有三种方式</p> <ul><li>单引号；如：file=‘123123’</li> <li>双引号；如：file=&quot;123123&quot;</li> <li>无引号；如：file=123123</li></ul> <p>上述几种方式均可声明变量，区别在于：</p> <ol><li>单引号字符串所见即所得，即将单引号内的内容原样输出。</li> <li>双引号会替换其中的变量输出。</li> <li>无引号和双引号类似，就是不能包含空白字符。</li></ol> <p>关于<code>#!/bin/bash</code>，这玩意不是注释，是必须要有的。</p> <h3 id="第二段"><a href="#第二段" class="header-anchor">#</a> 第二段</h3> <p>这一段是接受外界输入参数的</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment">#接受参数</span>
+<span class="token keyword">while</span> <span class="token builtin class-name">getopts</span> f: OPT<span class="token punctuation">;</span> <span class="token keyword">do</span>
+  <span class="token keyword">case</span> <span class="token variable">${OPT}</span> <span class="token keyword">in</span>
+  f<span class="token punctuation">)</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;in====&gt;&quot;</span> <span class="token variable">${OPTARG}</span> 
+    <span class="token assign-left variable">file</span><span class="token operator">=</span><span class="token variable">${OPTARG}</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">\</span>?<span class="token punctuation">)</span>
+  <span class="token builtin class-name">echo</span> <span class="token string">&quot;仅支持参数：-f &quot;</span>
+  <span class="token builtin class-name">exit</span> <span class="token number">1</span>
+  <span class="token keyword">esac</span>
+<span class="token keyword">done</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p><code>f:</code>表示接受的参数是<code>-f</code></p> <h3 id="第三段"><a href="#第三段" class="header-anchor">#</a> 第三段</h3> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment">#判断</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -e <span class="token variable">${file}</span> <span class="token punctuation">]</span>
+<span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -w <span class="token variable">${file}</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;文件 <span class="token variable">${file}</span> 可以写入！开始写入信息====》&quot;</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;echo 'Hello world!' &quot;</span> <span class="token operator">&gt;&gt;</span> <span class="token variable">${file}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> -x <span class="token variable">${file}</span> <span class="token punctuation">]</span>
+        <span class="token keyword">then</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">&quot;文件可以执行！正在执行====》&quot;</span> 
+            <span class="token function">sh</span> <span class="token variable">${file}</span>
+        <span class="token keyword">else</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">&quot;文件 <span class="token variable">${file}</span>  不可以执行！请赋予权限: chmod +x <span class="token variable">${file}</span>&quot;</span>
+        <span class="token keyword">fi</span>
+    <span class="token keyword">else</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;文件 <span class="token variable">${file}</span> 不可以写入，请赋予权限！&quot;</span>
+    <span class="token keyword">fi</span>
+<span class="token keyword">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;文件 <span class="token variable">${file}</span> 不存在！&quot;</span>
+<span class="token keyword">fi</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p>这里就是基本的判断语法了，详情见下面的知识补充。</p> <h2 id="知识补充"><a href="#知识补充" class="header-anchor">#</a> 知识补充</h2> <h3 id="上述if语法说明"><a href="#上述if语法说明" class="header-anchor">#</a> 上述if语法说明</h3> <p>if语法：</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token keyword">if</span> condition1
+<span class="token keyword">then</span>
+    command1
+<span class="token keyword">elif</span> condition2 
+<span class="token keyword">then</span> 
+    command2
+<span class="token keyword">else</span>
+    commandN
+<span class="token keyword">fi</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>关于<code>${file}</code>是获取变量的值，这应该没什么问题，那么关于<code>-e</code>、<code>-w</code>这些是什么意思？常用的如下：</p> <ul><li>-d file	检测文件是否是目录，如果是，则返回 true。</li> <li>-r file	检测文件是否可读，如果是，则返回 true。</li> <li>-w file	检测文件是否可写，如果是，则返回 true。</li> <li>-x file	检测文件是否可执行，如果是，则返回 true。</li> <li>-s file	检测文件是否为空（文件大小是否大于0），不为空返回 true。</li> <li>-e file	检测文件（包括目录）是否存在，如果是，则返回 true。</li></ul> <p>关于：<code>echo &quot;echo 'Hello world!' &quot; &gt;&gt; ${file}</code>这句就是向文件写入内容，<code>&gt;&gt;</code>代表向后追加，如果使用<code>&gt;</code>那会把源文件清空后写入你的内容。</p> <h3 id="补充for循环"><a href="#补充for循环" class="header-anchor">#</a> 补充for循环</h3> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token keyword">for</span> <span class="token for-or-select variable">loop</span> <span class="token keyword">in</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token number">5</span>
+<span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;<span class="token variable">${loop}</span>&quot;</span>
+<span class="token keyword">done</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="补充while循环"><a href="#补充while循环" class="header-anchor">#</a> 补充while循环</h3> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token shebang important">#!/bin/bash</span>
+<span class="token assign-left variable">int</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token keyword">while</span><span class="token variable"><span class="token punctuation">((</span> $int<span class="token operator">&lt;=</span><span class="token number">5</span> <span class="token punctuation">))</span></span>
+<span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token variable">$int</span>
+    <span class="token builtin class-name">let</span> <span class="token string">&quot;int++&quot;</span>
+<span class="token keyword">done</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。</p> <h3 id="补充case语句"><a href="#补充case语句" class="header-anchor">#</a> 补充case语句</h3> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token shebang important">#!/bin/sh</span>
+
+<span class="token assign-left variable">flag</span><span class="token operator">=</span><span class="token string">&quot;1123123&quot;</span>
+
+<span class="token keyword">case</span> <span class="token string">&quot;<span class="token variable">$flag</span>&quot;</span> <span class="token keyword">in</span>
+   <span class="token string">&quot;1&quot;</span><span class="token punctuation">)</span> <span class="token builtin class-name">echo</span> <span class="token string">&quot;111&quot;</span>
+   <span class="token punctuation">;</span><span class="token punctuation">;</span>
+   <span class="token string">&quot;2&quot;</span><span class="token punctuation">)</span> <span class="token builtin class-name">echo</span> <span class="token string">&quot;222&quot;</span>
+   <span class="token punctuation">;</span><span class="token punctuation">;</span>
+   <span class="token string">&quot;3&quot;</span><span class="token punctuation">)</span> <span class="token builtin class-name">echo</span> <span class="token string">&quot;333&quot;</span>
+   <span class="token punctuation">;</span><span class="token punctuation">;</span>
+   *<span class="token punctuation">)</span> <span class="token builtin class-name">echo</span> <span class="token string">&quot;未知！&quot;</span>
+<span class="token keyword">esac</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Update:</span> <span class="time">1/15/2022, 9:51:23 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/doc-kusch/study/linux/redisDocker.html" class="prev">
+        Docker安装redis
+      </a></span> <span class="next"><a href="/doc-kusch/study/linux/linux3.html">
+        占位节
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><div></div><!----><div id="live2d-widget" class="live2d-widget-container" style="position:fixed;right:10px;bottom:0px;width:135px;height:300px;z-index:99999;opacity:0.8;pointer-events:none;"><canvas id="live2d_canvas" width="135" height="300" class="live2d_canvas" style="position:absolute;left:0px;top:0px;width:135px;height:300px;"></canvas></div><APlayer audio="" fixed="true" autoplay="autoplay" theme="#b7daff" loop="loop" order="list" preload="auto" volume="0.7" mutex="true" lrc-type="3" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer></div></div>
+    <script src="/doc-kusch/assets/js/app.9ad9cd00.js" defer></script><script src="/doc-kusch/assets/js/2.49a801db.js" defer></script><script src="/doc-kusch/assets/js/37.b5e9c189.js" defer></script><script src="/doc-kusch/assets/js/4.51a1e0b9.js" defer></script>
+  </body>
+</html>
