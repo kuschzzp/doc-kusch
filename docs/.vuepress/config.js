@@ -112,6 +112,7 @@ module.exports = {
             { title: 'Nginx安装', path: '/study/linux/centOSNginx' },
             { title: 'Docker安装xxl-job', path: '/study/linux/xxlJobDocker' },
             { title: 'Docker安装redis', path: '/study/linux/redisDocker' },
+            { title: 'Shell脚本使用', path: '/study/linux/shellstudy' },
             { title: '占位节', path: '/study/linux/linux3' },
           ]
         }

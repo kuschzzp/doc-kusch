@@ -1,0 +1,194 @@
+# Shell学习向一个sh文件写入内容并执行
+
+## 本次学习最终效果描述
+
+执行`check.sh`将向`test.sh`中写入命令并执行
+
+## 最终代码
+
+`check.sh`
+
+```shell
+#!/bin/bash
+file="null"
+
+#接受参数
+while getopts f: OPT; do
+  case ${OPT} in
+  f)
+    echo "in====>" ${OPTARG} 
+    file=${OPTARG}
+    ;;
+  \?)
+  echo "仅支持参数：-f "
+  exit 1
+  esac
+done
+#判断
+if [ -e ${file} ]
+then
+    if [ -w ${file} ]
+    then
+        echo "文件 ${file} 可以写入！开始写入信息====》"
+        echo "echo 'Hello world!' " >> ${file}
+        if [ -x ${file} ]
+        then
+            echo "文件可以执行！正在执行====》" 
+            sh ${file}
+        else
+            echo "文件 ${file}  不可以执行！请赋予权限: chmod +x ${file}"
+        fi
+    else
+        echo "文件 ${file} 不可以写入，请赋予权限！"
+    fi
+else
+    echo "文件 ${file} 不存在！"
+fi
+```
+
+执行命令`./check.sh -f /opt/testbash/test.sh`
+
+## 代码描述
+
+### 第一段
+
+```shell
+#!/bin/bash
+file="null"
+```
+
+声明一个`file`变量后续接受输入参数
+
+补充：声明变量有三种方式
+
+- 单引号；如：file=‘123123’
+- 双引号；如：file="123123"
+- 无引号；如：file=123123
+
+上述几种方式均可声明变量，区别在于：
+
+1. 单引号字符串所见即所得，即将单引号内的内容原样输出。
+2. 双引号会替换其中的变量输出。
+3. 无引号和双引号类似，就是不能包含空白字符。
+
+关于`#!/bin/bash`，这玩意不是注释，是必须要有的。
+
+### 第二段
+
+这一段是接受外界输入参数的
+
+```shell
+#接受参数
+while getopts f: OPT; do
+  case ${OPT} in
+  f)
+    echo "in====>" ${OPTARG} 
+    file=${OPTARG}
+    ;;
+  \?)
+  echo "仅支持参数：-f "
+  exit 1
+  esac
+done
+```
+
+`f:`表示接受的参数是`-f`
+
+### 第三段
+
+```shell
+#判断
+if [ -e ${file} ]
+then
+    if [ -w ${file} ]
+    then
+        echo "文件 ${file} 可以写入！开始写入信息====》"
+        echo "echo 'Hello world!' " >> ${file}
+        if [ -x ${file} ]
+        then
+            echo "文件可以执行！正在执行====》" 
+            sh ${file}
+        else
+            echo "文件 ${file}  不可以执行！请赋予权限: chmod +x ${file}"
+        fi
+    else
+        echo "文件 ${file} 不可以写入，请赋予权限！"
+    fi
+else
+    echo "文件 ${file} 不存在！"
+fi
+```
+
+这里就是基本的判断语法了，详情见下面的知识补充。
+
+## 知识补充
+
+### 上述if语法说明
+
+if语法：
+
+```shell
+if condition1
+then
+    command1
+elif condition2 
+then 
+    command2
+else
+    commandN
+fi
+```
+
+关于`${file}`是获取变量的值，这应该没什么问题，那么关于`-e`、`-w`这些是什么意思？常用的如下：
+
+- -d file	检测文件是否是目录，如果是，则返回 true。
+- -r file	检测文件是否可读，如果是，则返回 true。
+- -w file	检测文件是否可写，如果是，则返回 true。
+- -x file	检测文件是否可执行，如果是，则返回 true。
+- -s file	检测文件是否为空（文件大小是否大于0），不为空返回 true。
+- -e file	检测文件（包括目录）是否存在，如果是，则返回 true。
+
+
+
+关于：`echo "echo 'Hello world!' " >> ${file}`这句就是向文件写入内容，`>>`代表向后追加，如果使用`>`那会把源文件清空后写入你的内容。
+
+### 补充for循环
+
+```shell
+for loop in 1 2 3 4 5
+do
+    echo "${loop}"
+done
+```
+
+### 补充while循环
+
+```shell
+#!/bin/bash
+int=1
+while(( $int<=5 ))
+do
+    echo $int
+    let "int++"
+done
+```
+
+let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。
+
+### 补充case语句
+
+```shell
+#!/bin/sh
+
+flag="1123123"
+
+case "$flag" in
+   "1") echo "111"
+   ;;
+   "2") echo "222"
+   ;;
+   "3") echo "333"
+   ;;
+   *) echo "未知！"
+esac
+```
