@@ -1,7 +1,12 @@
 ---
-title: 你好，世界！
+title: 迷途指引者
+description: 页面描述者
 sidebar: auto
 sidebarDepth: 4
+tags:
+ - 导航
+ - 指引
+ - 首页
 ---
 
 ## 记录一下插件网站
@@ -15,6 +20,7 @@ sidebarDepth: 4
 4. [https://moefyit.github.io/moefy-vuepress/packages/meting.html#options](https://moefyit.github.io/moefy-vuepress/packages/meting.html#options)
 
 5. [https://zhousiwei.gitee.io/live2d-widget.js/examples/index.html](https://zhousiwei.gitee.io/live2d-widget.js/examples/index.html)
+
 6. [https://www.sofineday.com/vuepress-catalog.html#%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BD%8D%E7%BD%AE](https://www.sofineday.com/vuepress-catalog.html#%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BD%8D%E7%BD%AE)
 
 ## 生成文件树方式

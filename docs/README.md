@@ -1,15 +1,15 @@
 ---
 home: true
 heroImage: /images/photo.jpg
-actionText: 快速开始 →
+actionText: 学习使你快乐 →
 actionLink: guide.html
 features:
-- title: 有雨的梦里
-  details: 生活中的每一桩糟糕事，几乎都是时机不当的结果；每件好事，都是恰到好处的结果！
-- title: 会总有一把伞
-  details: 我的生命是废墟的碎片，但我的灵魂干净！
-- title: 为我撑起么
-  details: 人生快乐倘若想完备，一定要保存一点孩子气！
+- title: Yesterday
+  details: I don't want to be someone that you're settling for. I don't want to be someone that anyone settles for.
+- title: Today
+  details: Happiness is not about being immortal nor having food or rights in one's hand. It’s about having each tiny wish come true, or having something to eat when you are hungry or having someone's love when you need love.
+- title: Tomorrow
+  details: One is always on a strange road, watching strange scenery and listening to strange music. Then one day, you will find that the things you try hard to forget are already gone.
 ---
 
-<Footer />
+<Footer></Footer>

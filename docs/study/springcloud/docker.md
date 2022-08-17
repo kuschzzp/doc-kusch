@@ -88,7 +88,7 @@ docker info
 
 **如下:**
 
-![图片1](https://doc-kush-1302134273.cos.ap-nanjing.myqcloud.com/docker1.png)
+![图片1](http://cdn.gulei.love/docs/docker1.png)
 
 ## 三: 常用命令
 

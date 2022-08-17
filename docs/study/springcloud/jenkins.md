@@ -78,13 +78,13 @@ sudo docker exec 你的Id cat /var/jenkins_home/secrets/initialAdminPassword #�
 4. **下面去修改一下Jenkins的插件下载地址，防止等待一万年(方法如下)。**
 
 ::: details 点击查看
-- 在左侧找到`Manage Jenkins` 
-![图片1](https://doc-kush-1302134273.cos.ap-nanjing.myqcloud.com/jenkins1.png)
+- 在左侧找到`Manage Jenkins`
+![图片1](http://cdn.gulei.love/docs/jenkins1.png)
 - 在右侧找到`Manage Plugins`  
-![图片2](https://doc-kush-1302134273.cos.ap-nanjing.myqcloud.com/jenkins2.png)
+![图片2](http://cdn.gulei.love/docs/jenkins2.png)
 - 点击高级 
 - 将最下方的连接修改为`https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json`  
-![图片3](https://doc-kush-1302134273.cos.ap-nanjing.myqcloud.com/jenkins3.png)
+![图片3](http://cdn.gulei.love/docs/jenkins3.png)
 - 最后提交,等一会就行了。  
 :::
 
@@ -102,11 +102,11 @@ sudo docker exec 你的Id cat /var/jenkins_home/secrets/initialAdminPassword #�
 在插件中搜索`Gitee`安装即可
 
 - 1. 如图找到全局工具配置
-![图片1](https://doc-kush-1302134273.cos.ap-nanjing.myqcloud.com/jenkins4.png)
+![图片4](http://cdn.gulei.love/docs/jenkins4.png)
 
 - 2. 如下图所示自动安装Maven和JDK  
 如果安装JDK时要输入Oracle账户:`2696671285@qq.com`,`Oracle123`  
-![图片2](https://doc-kush-1302134273.cos.ap-nanjing.myqcloud.com/jenkins6.png)
-![图片3](https://doc-kush-1302134273.cos.ap-nanjing.myqcloud.com/jenkins5.png)
+![图片6](http://cdn.gulei.love/docs/jenkins6.png)
+![图片5](http://cdn.gulei.love/docs/jenkins5.png)
 
 :::
