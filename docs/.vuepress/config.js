@@ -1,3 +1,8 @@
+const path = require("path")
+const rootpath = path.dirname(__dirname) //执行一次dirname将目录定位到docs目录
+const utils = require('./utils/index.js');
+const filehelper = require('./utils/initPage.js');
+
 module.exports = {
     title: 'Kusch小破站',
     description: 'To be or not to be, that is the question!',
@@ -31,160 +36,64 @@ module.exports = {
         lineNumbers: true // 代码块是否显示行号
     },
     themeConfig: {
+        logo: '/images/photo.jpg',
         nav: [ // 导航栏配置
             {text: '主页', link: '/'},
             {
-                text: '前端相关',
+                text: '庞大的Java',
                 items: [
-                    {text: '知识', link: '/front/frontbase/frontEnv'},
-                    {text: '问题记录', link: '/front/frontmiddle/middle1'}
+                    {text: '夯实基础', link: '/java/base/'},
+                    {text: 'JVM', link: '/java/jvm/'},
+                    {text: '网络基础知识', link: '/java/internet/'},
+                    {text: '设计模式', link: '/java/design/'},
+                    {text: 'Spring&SpringBoot', link: '/java/springboot/'},
+                    {text: 'SpringCloud', link: '/java/springcloud/'},
                 ]
             },
             {
-                text: 'java相关',
+                text: '令人头大的数据库',
                 items: [
-                    {text: 'java基础篇', link: '/java/base/javaReference'},
-                    {text: 'java设计模式', link: '/java/designpattern/singleton'}
+                    {text: 'MySQL', link: '/database/mysql/'},
+                    {text: 'ORACLE', link: '/database/oracle/'},
+                    {text: 'Redis', link: '/database/redis/'},
                 ]
             },
             {
-                text: '后端知识库',
+                text: '玩出花的Linux',
                 items: [
-                    {text: 'SpringBoot相关', link: '/study/springboot/springboot1'},
-                    {text: 'SpringCloud相关', link: '/study/springcloud/jenkins'},
-                    {text: 'Linux操作相关', link: '/study/linux/centOS7Network'},
-                    {text: '软件和环境安装相关', link: '/study/env/mysql57'},
-                    {text: '数据库相关', link: '/study/database/databaseIndex'},
+                    {text: '常规部署', link: '/linux/normal/'},
+                    {text: 'Docker', link: '/linux/docker/'},
+                    {text: 'Shell', link: '/linux/shell/'},
                 ]
             },
-            {text: '诗和远方', link: '/others/'},
-            {text: '遇见Bugs', link: '/bugs/'},
+            {
+                text: '八股文对线',
+                items: [
+                    {text: 'Java', link: '/interview/java/'},
+                    {text: 'Database', link: '/interview/database/'}
+                ]
+            },
+            {text: '我并不知道这些放哪里', link: '/other/'},
             {text: '更多', link: 'https://gitee.com/kuschzzp/doc-kusch'}
         ],
         // 为以下路由添加左侧边栏
         sidebar: {
-            '/others/': [
-                {
-                    title: '诗和远方',
-                    collapsable: false,
-                    children: [
-                        {title: '诗和远方01', path: '/others/life01'},
-                        {title: '诗和远方02', path: '/others/life02'},
-                        {title: '诗和远方03', path: '/others/life03'},
-                    ]
-                }
-            ],
-            '/bugs/': [
-                {
-                    title: '遇见神坑',
-                    collapsable: false,
-                    children: [
-                        {title: 'Nginx部署Vuepress问题', path: '/bugs/vuepressNginx'},
-                    ]
-                }
-            ],
-            '/study/springboot/': [
-                {
-                    title: 'SpringBoot相关',
-                    collapsable: false,
-                    children: [
-                        {title: '占位节', path: '/study/springboot/springboot1'},
-                    ]
-                }
-            ],
-            '/study/springcloud/': [
-                {
-                    title: 'SpringCloud相关',
-                    collapsable: false,
-                    children: [
-                        {title: 'Jenkins', path: '/study/springcloud/jenkins'},
-                        {title: 'Docker', path: '/study/springcloud/docker'},
-                        {title: '占位节', path: '/study/springcloud/springcloud3'},
-                    ]
-                }
-            ],
-            '/study/linux/': [
-                {
-                    title: 'Linux操作相关',
-                    collapsable: false,
-                    children: [
-                        {title: 'centos7 mini网络设置', path: '/study/linux/centOS7Network'},
-                        {title: 'Nginx安装', path: '/study/linux/centOSNginx'},
-                        {title: 'Docker安装xxl-job', path: '/study/linux/xxlJobDocker'},
-                        {title: 'Docker安装redis', path: '/study/linux/redisDocker'},
-                        {title: 'Shell脚本使用', path: '/study/linux/shellstudy'},
-                        {title: '占位节', path: '/study/linux/linux3'},
-                    ]
-                }
-            ],
-            '/study/env/': [
-                {
-                    title: '软件和环境安装相关',
-                    collapsable: false,
-                    children: [
-                        {title: 'Linux下安装Mysql', path: '/study/env/mysql57'},
-                        {title: '占位节', path: '/study/env/env2'},
-                        {title: '占位节', path: '/study/env/env3'},
-                    ]
-                }
-            ],
-            '/study/database/': [
-                {
-                    title: '数据库相关',
-                    collapsable: false,
-                    children: [
-                        {title: '数据库索引', path: '/study/database/databaseIndex'},
-                        {title: '占位节', path: '/study/database/database2'},
-                    ]
-                }
-            ],
-
-            '/front/frontbase/': [
-                {
-                    title: '知识',
-                    collapsable: false,
-                    children: [
-                        {title: '开发环境安装', path: '/front/frontbase/frontEnv'},
-                        {title: 'vuepress的初步搭建', path: '/front/frontbase/createvuepress'},
-                    ]
-                }
-            ],
-            '/front/frontmiddle/': [
-                {
-                    title: '问题记录',
-                    collapsable: false,
-                    children: [
-                        {title: '占位节', path: '/front/frontmiddle/middle1'},
-                    ]
-                }
-            ],
-            '/java/base/': [
-                {
-                    title: 'java基础篇',
-                    collapsable: false,
-                    children: [
-                        {title: 'Java四种引用', path: '/java/base/javaReference'},
-                        {title: '深拷贝和浅拷贝', path: '/java/base/javaClone'},
-                        {title: 'Volatile关键字及重排序', path: '/java/base/volatile'},
-                        {title: '常见运算符', path: '/java/base/operator'},
-                        {title: '占位节', path: '/java/base/base4'}
-                    ]
-                }
-            ],
-
-            '/java/designpattern/': [
-                {
-                    title: 'java设计模式',
-                    collapsable: false,
-                    children: [
-                        {title: '单例模式', path: '/java/designpattern/singleton'}
-                    ]
-                }
-            ],
-
-
+            '/java/base/': utils.genSidebar('Java基础知识', filehelper.getFileName(rootpath + "/java/base/", "/java/base/"), true, 3),
+            '/java/jvm/': utils.genSidebar('JVM', filehelper.getFileName(rootpath + "/java/jvm/", "/java/jvm/"), true, 3),
+            '/java/internet/': utils.genSidebar('网络基础知识', filehelper.getFileName(rootpath + "/java/internet/", "/java/internet/"), true, 3),
+            '/java/design/': utils.genSidebar('设计模式', filehelper.getFileName(rootpath + "/java/design/", "/java/design/"), true, 3),
+            '/java/springboot/': utils.genSidebar('Spring&SpringBoot', filehelper.getFileName(rootpath + "/java/springboot/", "/java/springboot/"), true, 3),
+            '/java/springcloud/': utils.genSidebar('SpringCloud', filehelper.getFileName(rootpath + "/java/springcloud/", "/java/springcloud/"), true, 3),
+            '/database/mysql/': utils.genSidebar('MySQL', filehelper.getFileName(rootpath + "/database/mysql/", "/database/mysql/"), true, 3),
+            '/database/oracle/': utils.genSidebar('ORACLE', filehelper.getFileName(rootpath + "/database/oracle/", "/database/oracle/"), true, 3),
+            '/database/redis/': utils.genSidebar('Redis', filehelper.getFileName(rootpath + "/database/redis/", "/database/redis/"), true, 3),
+            '/linux/normal/': utils.genSidebar('常规部署', filehelper.getFileName(rootpath + "/linux/normal/", "/linux/normal/"), true, 3),
+            '/linux/docker/': utils.genSidebar('Docker', filehelper.getFileName(rootpath + "/linux/docker/", "/linux/docker/"), true, 3),
+            '/linux/shell/': utils.genSidebar('Shell', filehelper.getFileName(rootpath + "/linux/shell/", "/linux/shell/"), true, 3),
+            '/interview/java/': utils.genSidebar('Java对线', filehelper.getFileName(rootpath + "/interview/java/", "/interview/java/"), true, 3),
+            '/interview/database/': utils.genSidebar('Database对线', filehelper.getFileName(rootpath + "/interview/database/", "/interview/database/"), true, 3),
+            '/other/': utils.genSidebar('其他的一些', filehelper.getFileName(rootpath + "/other/", "/other/"), true, 3),
         },
-        // sidebar: 'auto', // 侧边栏配置
         sidebarDepth: 3,//左侧导航显示的层级
         lastUpdated: '最后更新时间'
     },
