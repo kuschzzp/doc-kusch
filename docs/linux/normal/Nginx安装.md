@@ -93,9 +93,29 @@ cd nginx-1.18.0
 3. 运行如下三个命令
 
 ``` shell
-./configure
+./configure \
+--prefix=/usr/local/nginx \
+--pid-path=/var/run/nginx/nginx.pid \
+--lock-path=/var/lock/nginx.lock \
+--error-log-path=/var/log/nginx/error.log \
+--http-log-path=/var/log/nginx/access.log \
+--with-http_gzip_static_module \
+--http-client-body-temp-path=/var/temp/nginx/client \
+--http-proxy-temp-path=/var/temp/nginx/proxy \
+--http-fastcgi-temp-path=/var/temp/nginx/fastcgi \
+--http-uwsgi-temp-path=/var/temp/nginx/uwsgi \
+--http-scgi-temp-path=/var/temp/nginx/scgi \
+--with-http_stub_status_module \
+--with-http_ssl_module \
+--with-file-aio \
+--with-http_realip_module
+ 
+ 
  
 make
+
+
+
  
 make install
 ```
@@ -158,8 +178,8 @@ vi nginx.conf
     
 
 ``` shell
-    curl 192.168.199.229:5678
-    ```
+curl 192.168.199.229:5678
+```
 
 * 还可以在主机浏览器访问，主机浏览器访问记得放行端口，或者直接关闭防火墙。
 
@@ -178,51 +198,77 @@ firewall-cmd --zone=public --add-port=5678/tcp --permanent
 ``` shell
 ./nginx -s stop
 ```
-## 三：挂载数据卷以及一些命令解释
 
- - 获取最新版的 Nginx 镜像
+### Nginx配置SSL证书
 
-		docker pull nginx:latest
+创建一个文件夹放你下载的证书压缩包
+
+```shell
+
+cd /usr/local/nginx
+
+mkdir cert
+
+cd cert
+```
+
+然后将证书压缩包上传到该文件夹下，并解压，完成后应该是下面这个样子
+```shell
+unzip 你的zip压缩包
+```
+![这样](http://cdn.gulei.love/docs/WeChat68d2bad1473135e33708430b2ca3340e.png)
+
+里面应该是这些文件，记住位置后开始修改配置文件
+![这些文件](http://cdn.gulei.love/docs/WeChatba123db0d72357040b233fb27fd88da7.png)
+
+修改完成后的配置文件如下：
+
+```
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    server {
+        listen 80;  # 监听 80 端口
+        server_name docs.superkusch.fun; # 二级域名地址
+        root  html/ROOT; # 映射项目地址
+        index index.html index.htm index.jsp; # 映射项目地址入口
+        return 301 https://$server_name$request_uri; # 重定向至 https 协议的域名地址（新增的）
+    }
+    server {
+        listen       443 ssl;        # 监听 443 端口
+        server_name  docs.superkusch.fun; # 二级域名地址
+
+        ssl_certificate      /usr/local/nginx/cert/docs.superkusch.fun_nginx/docs.superkusch.fun_bundle.crt;      # ssl_certificate 对应路径
+        ssl_certificate_key  /usr/local/nginx/cert/docs.superkusch.fun_nginx/docs.superkusch.fun.key;             # ssl_certificate_key 对应路径
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;    # 加密算法
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;                                                        # 安全链接可选的加密协议
+        ssl_prefer_server_ciphers on;                                                               # 使用服务器端的首选算法
+
+        location / {
+            root html/ROOT;            # 映射项目地址
+            index index.html index.htm index.jsp; # 映射项目地址入口
+        }
+        location /doc-kusch/ {    		
+            proxy_pass https://docs.superkusch.fun/;
+        }
+    }
+}
+
+```
 
 
- - 运行容器
-
-		docker run --name nginx-test -p 8080:80 -d nginx
-
-  > --name nginx-test：容器名称。  
-	-p 8080:80： 端口进行映射，将本地 8080 端口映射到容器内部的 80 端口。  
-	-d nginx： 设置容器在在后台一直运行。
 
 
- - 进入某个容器
 
-		docker exec -it <容器id> /bin/bash
-
- - 自定义nginx配置和挂载存储卷
-
- > - 定义nginx.conf配置文件，放置于宿主机（服务器）的/home/nginx目录下
-
- > - 用于include的vhost目录，从而方便管理，放置于宿主机（服务器）的/home/nginx目录下
-
- > - 定义WEB的根目录www，放置于宿主机（服务器）的/home/nginx目录下
-
- > - 创建两个日志追踪文件nginx_error.log和access.log，放置于宿主机（服务器）的/home/nginx/logs目录下
-
-		docker run --name nginxKusch --privileged=true -p 5588:80 -v /home/nginx/nginx.conf:/etc/nginx/nginx.conf -v /home/nginx/vhost:/home/nginx/vhost -v /home/nginx/logs/nginx_error.log:/home/nginx/logs/nginx_error.log -v /home/nginx/www:/home/nginx/www -d nginx
-
- > -d: 后台运行容器，并返回容器UUID（常用）
-
- > -i: 以交互模式运行容器，通常与 -t 同时使用
-
- > -t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用
-
- > v, –volume=[] 给容器挂载存储卷，挂载到容器的某个目录（常用）
-
- > –privileged=false 指定容器是否为特权容器，特权容器拥有所有的capabilities
-
- > –name=”” 指定容器名字（如mynginx），后续可以通过这个容器名字进行容器管理（常用）
-
- 参考博文：[点击这里](https://blog.csdn.net/qq_41291945/article/details/107898035)
-
-
-## Nginx配置文件详解（待补充------>）
