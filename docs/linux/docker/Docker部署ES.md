@@ -14,7 +14,7 @@ categories: Markdown
 docker pull elasticsearch:7.9.3
 ```
 
-单节点运行，并设置内存大小，放置小内存服务器爆了
+单节点运行，并设置内存大小，防止小内存服务器直接爆了
 
 ```shell
 docker run -d --name=es -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms128m -Xmx1024m"  elasticsearch:7.9.3
@@ -22,7 +22,7 @@ docker run -d --name=es -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node
 
 **9300是多节点时通信用**
 
-进入容器做一些配置
+进入容器做一些配置 （可选吧，我不配置它确实是是没出现问题。）
 
 ```shell
 #进入es容器内容
@@ -64,9 +64,9 @@ elasticsearch.hosts: [ "http://你刚才查的ip:9200" ]
 
 ## 安装IK分词器插件、Ingest Attachment 插件
 
-[ingest-attachment-7.9.3.zip](http://cdn.gulei.love/docs/ingest-attachment-7.9.3.zip)
+[ingest-attachment-7.9.3.zip----右键复制链接下载](http://cdn.gulei.love/docs/ingest-attachment-7.9.3.zip)
 
-[elasticsearch-analysis-ik-7.9.3.zip](http://cdn.gulei.love/docs/elasticsearch-analysis-ik-7.9.3.zip)
+[elasticsearch-analysis-ik-7.9.3.zip----右键复制链接下载](http://cdn.gulei.love/docs/elasticsearch-analysis-ik-7.9.3.zip)
 
 下载好了放到服务器上，然后拷贝到容器当中去
 ```shell
