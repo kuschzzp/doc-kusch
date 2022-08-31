@@ -95,3 +95,37 @@ docker exec -it es /bin/bash
 ![1](http://cdn.gulei.love/docs/WeChat7dd42cc51c43493606f3699a2769beb1.png)
 
 **最后退(exit)出容器，重启（docker restart es）ES即可。**
+
+
+## 补充：给es和kibana设置密码
+
+1. 进入es容器`docker exec -it es /bin/bash`，编辑elasticsearch.yml 文件，在最后添加内容：
+```shell
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+http.cors.allow-headers: Authorization
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+```
+2. 重启后在此进入es容器，进入bin目录下执行
+```shell
+./elasticsearch-setup-passwords interactive
+```
+中途输入 Y ，然后输入好多遍自定义的密码，我这边输入的是qwer1234，记好了，等会儿要用。
+![看图](http://cdn.gulei.love/docs/WeChatd78b22a7d61e5c33b97e5eee88f6595c.png)
+
+3. 退出、重启es后再次访问你的ES9200地址，就需要填账号密码了：账号elastic 密码 qwer1234
+
+4. 进入kibana容器，编辑kibana.yml文件，最下面添加账号密码即可
+```shell
+# 注意这里配置的是 kibana 哈
+elasticsearch.username: "kibana"
+elasticsearch.password: "qwer1234"
+```
+
+5. 退出、重启kibana，然后访问Kibana5601地址，就需要填写账号密码了。
+> **特别注意点：**   
+> 
+> **登录Kibana时请使用账号：elastic   qwer1234**   
+> 
+> **如果使用： kibana qwer1234 那么登录成功后会403！！！！**   
