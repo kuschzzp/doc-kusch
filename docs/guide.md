@@ -15,6 +15,12 @@ tags:
 
 [BTNULL](https://www.btnull.re)
 
+## 常用API类（视频、音乐下载解析api等）
+
+[奔向导航页](https://tenapi.cn/)
+
+[聚合去水印api](https://docs.tenapi.cn/video.html#%E8%AF%B7%E6%B1%82url)
+
 
 ## Airport
 
