@@ -2001,6 +2001,18 @@
   "resolved" "https://registry.npmjs.org/async-limiter/-/async-limiter-1.0.1.tgz"
   "version" "1.0.1"
 
+"async-validator@^1.11.5":
+  "integrity" "sha512-XNtCsMAeAH1pdLMEg1z8/Bb3a8cdCbui9QbJATRFHHHW5kT6+NPI3zSVQUXgikTFITzsg+kYY5NTWhM2Orwt9w=="
+  "resolved" "https://registry.npmjs.org/async-validator/-/async-validator-1.11.5.tgz"
+  "version" "1.11.5"
+
+"async-validator@~1.8.1":
+  "integrity" "sha512-tXBM+1m056MAX0E8TL2iCjg8WvSyXu0Zc8LNtYqrVeyoL3+esHRZ4SieE9fKQyyU09uONjnMEjrNBMqT0mbvmA=="
+  "resolved" "https://registry.npmjs.org/async-validator/-/async-validator-1.8.5.tgz"
+  "version" "1.8.5"
+  dependencies:
+    "babel-runtime" "6.x"
+
 "async@^2.6.2":
   "integrity" "sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg=="
   "resolved" "https://registry.npmjs.org/async/-/async-2.6.3.tgz"
@@ -2067,6 +2079,11 @@
   dependencies:
     "babylon" "^6.18.0"
 
+"babel-helper-vue-jsx-merge-props@^2.0.0":
+  "integrity" "sha512-gsLiKK7Qrb7zYJNgiXKpXblxbV5ffSwR0f5whkPAaBAR4fhi6bwRZxX9wBlIc5M/v8CCkXUbXZL4N/nSE97cqg=="
+  "resolved" "https://registry.npmjs.org/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-2.0.3.tgz"
+  "version" "2.0.3"
+
 "babel-loader@^8.0.4":
   "integrity" "sha512-dMF8sb2KQ8kJl21GUjkW1HWmcsL39GOV5vnzjqrCzEPNY0S0UfMLnumidiwIajDSBmKhYf5iRW+HXaM4cvCKBw=="
   "resolved" "https://registry.npmjs.org/babel-loader/-/babel-loader-8.2.1.tgz"
@@ -2098,7 +2115,7 @@
     "babel-plugin-syntax-object-rest-spread" "^6.8.0"
     "babel-runtime" "^6.26.0"
 
-"babel-runtime@^6.26.0":
+"babel-runtime@^6.26.0", "babel-runtime@6.x":
   "integrity" "sha1-llxwWGaOgrVde/4E/yM3vItWR/4="
   "resolved" "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.26.0.tgz"
   "version" "6.26.0"
@@ -3402,7 +3419,7 @@
   "resolved" "https://registry.npmjs.org/deep-extend/-/deep-extend-0.6.0.tgz"
   "version" "0.6.0"
 
-"deepmerge@^1.5.2":
+"deepmerge@^1.2.0", "deepmerge@^1.5.2":
   "integrity" "sha512-95k0GDqvBjZavkuvzx/YqVLv/6YYa17fz6ILMSf7neqQITCPbnfEnQvEgMPNjH4kgobe7+WIL0yJEHku+H3qtQ=="
   "resolved" "https://registry.npmjs.org/deepmerge/-/deepmerge-1.5.2.tgz"
   "version" "1.5.2"
@@ -3646,6 +3663,18 @@
   "integrity" "sha512-JxKQiJKX0Zr5Q2/bCaTx8P+UbfyMET1OQd61qu5xQFeWr1km3fGaxelSJtnfT27XQ5Uoztn2yIyeamAc/VX13g=="
   "resolved" "https://registry.npmmirror.com/element-closest/-/element-closest-3.0.2.tgz"
   "version" "3.0.2"
+
+"element-ui@^2.14.1":
+  "integrity" "sha512-Uje0J12dBaXdyvt/EtuDA8diFbYTdO7uI4QCfl7zmEJmE1WxgCSVKhlRRoL8MDonO8pyNVhB4n0AFAR14g56nw=="
+  "resolved" "https://registry.npmjs.org/element-ui/-/element-ui-2.14.1.tgz"
+  "version" "2.14.1"
+  dependencies:
+    "async-validator" "~1.8.1"
+    "babel-helper-vue-jsx-merge-props" "^2.0.0"
+    "deepmerge" "^1.2.0"
+    "normalize-wheel" "^1.0.1"
+    "resize-observer-polyfill" "^1.5.0"
+    "throttle-debounce" "^1.0.1"
 
 "elliptic@^6.5.3":
   "integrity" "sha512-IMqzv5wNQf+E6aHeIqATs0tOLeOTwj1QKbRcS3jBbYkl5oLAserA8yJTT7/VyHUYG91PRmPyeQDObKLPpeS4dw=="
@@ -6157,6 +6186,11 @@
   "resolved" "https://registry.npmjs.org/normalize-url/-/normalize-url-4.5.0.tgz"
   "version" "4.5.0"
 
+"normalize-wheel@^1.0.1":
+  "integrity" "sha512-1OnlAPZ3zgrk8B91HyRj+eVv+kS5u+Z0SCsak6Xil/kmgEia50ga7zfkumayonZrImffAxPU/5WcyGhzetHNPA=="
+  "resolved" "https://registry.npmjs.org/normalize-wheel/-/normalize-wheel-1.0.1.tgz"
+  "version" "1.0.1"
+
 "npm-run-path@^2.0.0":
   "integrity" "sha1-NakjLfo11wZ7TLLd8jV7GHFTbF8="
   "resolved" "https://registry.npmjs.org/npm-run-path/-/npm-run-path-2.0.2.tgz"
@@ -7387,6 +7421,11 @@
   "resolved" "https://registry.npmjs.org/requires-port/-/requires-port-1.0.0.tgz"
   "version" "1.0.0"
 
+"resize-observer-polyfill@^1.5.0":
+  "integrity" "sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg=="
+  "resolved" "https://registry.npmjs.org/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz"
+  "version" "1.5.1"
+
 "resolve-cwd@^2.0.0":
   "integrity" "sha1-AKn3OHVW4nA46uIyyqNypqWbZlo="
   "resolved" "https://registry.npmjs.org/resolve-cwd/-/resolve-cwd-2.0.0.tgz"
@@ -8301,6 +8340,11 @@
   "resolved" "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   "version" "0.2.0"
 
+"throttle-debounce@^1.0.1":
+  "integrity" "sha512-XH8UiPCQcWNuk2LYePibW/4qL97+ZQ1AN3FNXwZRBNPPowo/NRU5fAlDCSNBJIYCKbioZfuYtMhG4quqoJhVzg=="
+  "resolved" "https://registry.npmjs.org/throttle-debounce/-/throttle-debounce-1.1.0.tgz"
+  "version" "1.1.0"
+
 "through@~2.3.4":
   "integrity" "sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU="
   "resolved" "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
@@ -8881,6 +8925,11 @@
   dependencies:
     "@vuepress/shared-utils" "^1.2.0"
     "markdown-it-container" "^2.0.0"
+
+"vuepress-plugin-demo-block@^0.7.2":
+  "integrity" "sha512-0k7z7bTjXoXgdAMVFIVn3RFSQpKOM0yvD0hf/CA0gMCLBih77mCALtEpH9b+bEvijHmLLIq+BUtS2TQHXpkbNA=="
+  "resolved" "https://registry.npmjs.org/vuepress-plugin-demo-block/-/vuepress-plugin-demo-block-0.7.2.tgz"
+  "version" "0.7.2"
 
 "vuepress-plugin-disqus@^0.2.0":
   "integrity" "sha512-kx+AeVzjJ9lx9bufLt1/X35V1VXfnQ1srkDMIzFKD9NyQ3eycsWQRcGO1dFe1HMrY3+7fTu+1/JeUEUEpGZ5tw=="
