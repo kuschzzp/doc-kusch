@@ -40,13 +40,14 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          //验证通过，调用接口去下载文件
-          axios.get("https://superkusch.fun:17777/download/common?videoUrl=" + this.ruleForm.videoUrl, {
-            // axios.get("http://127.0.0.1:17777/download/common?videoUrl="+ this.ruleForm.videoUrl, {
-            responseType: 'blob',
-          }).then(res => {
-            fileDownload(res.data, decodeURI(res.headers.realname));
-          });
+          // //验证通过，调用接口去下载文件
+          // axios.get("http://47.97.18.120:17777/download/common?videoUrl=" + this.ruleForm.videoUrl, {
+          //   // axios.get("http://127.0.0.1:17777/download/common?videoUrl="+ this.ruleForm.videoUrl, {
+          //   responseType: 'blob',
+          // }).then(res => {
+          //   fileDownload(res.data, decodeURI(res.headers.realname));
+          // });
+          window.location.href= "http://47.97.18.120:17777/download/common?videoUrl=" + this.ruleForm.videoUrl;
         } else {
           console.log("表单校验失败！")
           return false;
