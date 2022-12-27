@@ -47,7 +47,7 @@ export default {
           // }).then(res => {
           //   fileDownload(res.data, decodeURI(res.headers.realname));
           // });
-          window.location.href= "http://47.97.18.120:17777/download/common?videoUrl=" + this.ruleForm.videoUrl;
+          window.location.href= "http://49.235.29.74:17777/download/common?videoUrl=" + this.ruleForm.videoUrl + "&way=1";
         } else {
           console.log("表单校验失败！")
           return false;
