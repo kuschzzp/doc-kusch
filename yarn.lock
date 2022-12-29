@@ -5315,7 +5315,7 @@
 
 "js-file-download@^0.4.12":
   "integrity" "sha512-rML+NkoD08p5Dllpjo0ffy4jRHeY6Zsapvr/W86N7E0yuzAO6qa5X9+xog6zQNlH102J7IXljNY2FtS6Lj3ucg=="
-  "resolved" "http://nexus.goodcol.com/repository/npm-public/js-file-download/-/js-file-download-0.4.12.tgz"
+  "resolved" "https://registry.npmjs.org/js-file-download/-/js-file-download-0.4.12.tgz"
   "version" "0.4.12"
 
 "js-tokens@^4.0.0":
@@ -8938,7 +8938,7 @@
 
 "vuepress-plugin-demo-container@^0.2.0":
   "integrity" "sha512-IXWZUc9+mErxjhBMRvhjHkGlXC3aXLS8wRV4kh4RZYAOVtb8nLv2fmpzwrSZrnIOXLGMcMTObdFruVzX9kBylw=="
-  "resolved" "http://nexus.goodcol.com/repository/npm-public/vuepress-plugin-demo-container/-/vuepress-plugin-demo-container-0.2.0.tgz"
+  "resolved" "https://registry.npmjs.org/vuepress-plugin-demo-container/-/vuepress-plugin-demo-container-0.2.0.tgz"
   "version" "0.2.0"
 
 "vuepress-plugin-disqus@^0.2.0":
