@@ -6,7 +6,8 @@ const filehelper = require('./utils/initPage.js');
 module.exports = {
     title: 'Kusch小破站',
     description: 'To be or not to be, that is the question!',
-    base: '/doc-kusch/',   // 设置站点根路径
+    // base: '/doc-kusch/',   // 设置站点根路径
+    base: '/',   // 设置站点根路径
     // port: 8080,
     search: true,  //开启搜索框
     searchMaxSuggestions: 7, //调整默认搜索框显示的搜索结果数量
