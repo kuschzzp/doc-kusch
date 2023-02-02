@@ -365,3 +365,9 @@ public class MoreTestServiceImpl extends ServiceImpl<MoreTestMapper, MoreTestEnt
 > 分别放开子线程报错和主线程报错，会发现事务都可以正常回滚，达到了预期的效果。
 >
 > 主要思路就是通过`子线程CountDownLatch`和`主线程CountDownLatch`，控制线程好代码的执行顺序即可。
+
+最后补充几点：
+
+- 上述代码中的countDown()一旦出现不执行的情况那会导致线程堵塞堆积，所以建议给await()增加超时时间
+- 这样操作可能还会出现问题，比如主线程通知子线程可以进行实务操作了，但是各个子线程之间非透明，所以还是有几率存在某个子线程事务回滚失败的情况。
+
