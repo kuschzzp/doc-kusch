@@ -143,15 +143,15 @@ Process finished with exit code 0
 **main**方法中，把两个认为一样的对象放进**set**中，输出时，却输出了两个，说明**set**集合并不认为它们是一样的对象，那为什么呢？
 下面找一下**set**集合的**add**方法看一下：
 
-![图1](http://cdn.superkusch.fun/docs/WeChatb5053bd79f6391bd75651cfbe84c2726.png)
+![图1](http://img.superkusch.fun/docs/WeChatb5053bd79f6391bd75651cfbe84c2726.png)
 
 可见它把我们的对象作为key存入了map中，值 **PRESENT** 是一个虚拟值，不用管。接着往下走
 
-![2](http://cdn.superkusch.fun/docs/WeChat4fd21a5b8cc44f17cf3cc363913c5629.png)
+![2](http://img.superkusch.fun/docs/WeChat4fd21a5b8cc44f17cf3cc363913c5629.png)
 
 可见 **hash(key)** 方法就是将我们的对象进行hash计算，再跟hash()方法
 
-![3](http://cdn.superkusch.fun/docs/WeChate59c29d1cf96abf920724507cf1d5248.png)
+![3](http://img.superkusch.fun/docs/WeChate59c29d1cf96abf920724507cf1d5248.png)
 
 到这里应该就明确了，由于我们没有重写 **hashCode()** 方法导致 **goods.hashCode() == goods1.hashCode()** 为false，所以被当成了两个对象。
 最后吧重写的 **hashCode()** 方法补上看看结果：

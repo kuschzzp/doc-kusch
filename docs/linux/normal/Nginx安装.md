@@ -216,10 +216,10 @@ cd cert
 ```shell
 unzip 你的zip压缩包
 ```
-![这样](http://cdn.superkusch.fun/docs/WeChat68d2bad1473135e33708430b2ca3340e.png)
+![这样](http://img.superkusch.fun/docs/WeChat68d2bad1473135e33708430b2ca3340e.png)
 
 里面应该是这些文件，记住位置后开始修改配置文件
-![这些文件](http://cdn.superkusch.fun/docs/WeChatba123db0d72357040b233fb27fd88da7.png)
+![这些文件](http://img.superkusch.fun/docs/WeChatba123db0d72357040b233fb27fd88da7.png)
 
 修改完成后的配置文件如下：
 
