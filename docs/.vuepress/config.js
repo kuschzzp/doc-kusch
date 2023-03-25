@@ -163,9 +163,7 @@ module.exports = {
             'meting', {
             // metingApi: "https://github.com/moefyit/vuepress-plugin-meting",
             meting: {
-                server: "netease",
-                type: "playlist",
-                mid: "6800773181",
+                auto: "https://music.163.com/#/playlist?id=2420545066"
             },          // 不配置该项的话不会出现全局播放器
             aplayer: {
                 theme: "#b7daff", //主题颜色，不展示图片时能看到
