@@ -6,6 +6,8 @@
 > 3. 再然后，需要一个**已经配置好https访问**的子域名，例如：`img.superkusch.fun`  
 > 4. 最后就是通过将访问 `https://img.superkusch.fun` 的请求代理到 `http://cdn.superkusch.fun` 这样就OK了。  
 
+**但要注意的是，这么搞虽然白嫖了，但是就损失了访问速度！！！！！！**
+
 #### nginx配置文件例子如下
 ```shell
 user  root;
