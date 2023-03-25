@@ -23,7 +23,7 @@ GET /_cat/indices?v
 # 查看某个索引的详细信息
 GET /gkims_recruitment_index/_mapping
 ```
-![如图](http://cdn.gulei.love/docs/WeChat218286c7d9520d8222e7b26ccc2dd9b0.png)
+![如图](http://cdn.superkusch.fun/docs/WeChat218286c7d9520d8222e7b26ccc2dd9b0.png)
 
 ### 建立新的索引和映射
 ```

@@ -64,9 +64,9 @@ elasticsearch.hosts: [ "http://你刚才查的ip:9200" ]
 
 ## 安装IK分词器插件、Ingest Attachment 插件
 
-[ingest-attachment-7.9.3.zip----右键复制链接下载](http://cdn.gulei.love/docs/ingest-attachment-7.9.3.zip)
+[ingest-attachment-7.9.3.zip----右键复制链接下载](http://cdn.superkusch.fun/docs/ingest-attachment-7.9.3.zip)
 
-[elasticsearch-analysis-ik-7.9.3.zip----右键复制链接下载](http://cdn.gulei.love/docs/elasticsearch-analysis-ik-7.9.3.zip)
+[elasticsearch-analysis-ik-7.9.3.zip----右键复制链接下载](http://cdn.superkusch.fun/docs/elasticsearch-analysis-ik-7.9.3.zip)
 
 下载好了放到服务器上，然后拷贝到容器当中去
 ```shell
@@ -74,7 +74,7 @@ docker cp elasticsearch-analysis-ik-7.9.3.zip es:/opt/
 docker cp ingest-attachment-7.9.3.zip  es:/opt/
 # 命令格式：docker cp 你的文件  容器:容器内文件
 ```
-![如图](http://cdn.gulei.love/docs/WeChat931a24ab064d3f4d15c11fa7d44d0423.png)
+![如图](http://cdn.superkusch.fun/docs/WeChat931a24ab064d3f4d15c11fa7d44d0423.png)
 
 我这里是将两个压缩包放在了容器内的`/opt` 下面，然后进入ES容器，进入ES的`bin`文件夹执行下面的命令安装
 ```shell
@@ -84,7 +84,7 @@ docker exec -it es /bin/bash
 #安装命令
 /usr/share/elasticsearch/bin/elasticsearch-plugin install file:///opt/ingest-attachment-7.9.3.zip
 ```
-![如图](http://cdn.gulei.love/docs/WeChat95ea07a809f035be40f26711ae2d2936.png)
+![如图](http://cdn.superkusch.fun/docs/WeChat95ea07a809f035be40f26711ae2d2936.png)
 
 另外一个也是一样的。
 
@@ -92,7 +92,7 @@ docker exec -it es /bin/bash
 ```shell
 /usr/share/elasticsearch/bin/elasticsearch-plugin list
 ```
-![1](http://cdn.gulei.love/docs/WeChat7dd42cc51c43493606f3699a2769beb1.png)
+![1](http://cdn.superkusch.fun/docs/WeChat7dd42cc51c43493606f3699a2769beb1.png)
 
 **最后退(exit)出容器，重启（docker restart es）ES即可。**
 
@@ -112,7 +112,7 @@ xpack.security.transport.ssl.enabled: true
 ./elasticsearch-setup-passwords interactive
 ```
 中途输入 Y ，然后输入好多遍自定义的密码，我这边输入的是qwer1234，记好了，等会儿要用。
-![看图](http://cdn.gulei.love/docs/WeChatd78b22a7d61e5c33b97e5eee88f6595c.png)
+![看图](http://cdn.superkusch.fun/docs/WeChatd78b22a7d61e5c33b97e5eee88f6595c.png)
 
 3. 退出、重启es后再次访问你的ES9200地址，就需要填账号密码了：账号elastic 密码 qwer1234
 

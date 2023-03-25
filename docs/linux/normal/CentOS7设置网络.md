@@ -20,7 +20,7 @@ tags:
 nmcli d
 ```
 
-![图片1](http://cdn.gulei.love/docs/centosNetwork1.png)
+![图片1](http://cdn.superkusch.fun/docs/centosNetwork1.png)
 
 然后使用命令，并入下图所示方式修改
 
@@ -30,19 +30,19 @@ nmtui
 
 ::: details 点击查看操作图片
 
-![图片2](http://cdn.gulei.love/docs/centosNetwork2.png)
+![图片2](http://cdn.superkusch.fun/docs/centosNetwork2.png)
 
 
 
-![图片3](http://cdn.gulei.love/docs/centosNetwork3.png)
+![图片3](http://cdn.superkusch.fun/docs/centosNetwork3.png)
 
 
 
-![图片4](http://cdn.gulei.love/docs/centosNetwork4.png)
+![图片4](http://cdn.superkusch.fun/docs/centosNetwork4.png)
 
 * 上一步操作完，使用`service network restart`重启一下网络即可使用`nmcli d`查看状态。 
 
-![图片5](http://cdn.gulei.love/docs/centosNetwork5.png)
+![图片5](http://cdn.superkusch.fun/docs/centosNetwork5.png)
 
 :::
 
@@ -50,6 +50,6 @@ nmtui
 
 1. 同上，查看状态。
 2. 使用命令`cd /etc/sysconfig/network-scripts`进入到指定文件夹。
-![图片6](http://cdn.gulei.love/docs/centosNetwork6.png)
+![图片6](http://cdn.superkusch.fun/docs/centosNetwork6.png)
 3. 用`ls` 查看存在的文件，使用`vi ifcfg-ens33`来修改文件（注意，不一定是叫这个名字，根据实际情况定！），进入后使用`i`开启编辑，修改完成后，按`ESC`，`:wq`退出，然后使用`service network restart`重启一下网络即可使用`nmcli d`查看状态。
-![图片7](http://cdn.gulei.love/docs/centosNetwork7.png)
+![图片7](http://cdn.superkusch.fun/docs/centosNetwork7.png)
