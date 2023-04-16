@@ -1,6 +1,6 @@
 <template>
   <div>
-    <iframe src="https://chat.superkusch.fun/" width="1000" height="800"></iframe>
+    <iframe id="bi_iframe" src="https://chat.superkusch.fun/"></iframe>
   </div>
 </template>
 <script>
@@ -27,6 +27,13 @@ export default {
       }
     };
   },
+  mounted() {
+    var ifm = document.getElementById("bi_iframe");
+    console.log(document.documentElement.clientHeight)
+    console.log(document.documentElement.clientWidth)
+    ifm.height = document.documentElement.clientHeight > 900 ? 800 : document.documentElement.clientHeight;
+    ifm.width = document.documentElement.clientWidth > 1000 ? 1000 :document.documentElement.clientWidth;
+  },
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
@@ -47,7 +54,7 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-    }
+    },
   }
 }
 </script>
