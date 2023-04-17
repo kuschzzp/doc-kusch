@@ -5,7 +5,8 @@
 
 ## 介绍
 1. 这是基于[vuepress-theme-vdoing](https://github.com/xugaoyi/vuepress-theme-vdoing) 所搭建的博客平台。
-2. 这里用于记录一些值得记录的文章。
+2. 网站的样式配置来源于[这位大佬的](https://notes.youngkbt.cn/about/website/index-big-img/#%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE) 的配置
+3. 这里用于记录一些值得记录的文章。
 
 ## 如何运行
 
@@ -20,5 +21,5 @@ cd doc-kusch
 npm install # or yarn install
 
 # develop
-npm run dev # or yarn dev
+npm run docs:dev # or yarn docs:dev
 ```
