@@ -95,6 +95,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 text: '更多',
                 link: '/more/',
                 items: [
+                    {text: '数据库', link: '/pages/1aff85/'},
                     {text: '胡言乱语', link: '/pages/words/'},
                     {text: '科学技巧', link: '/pages/science/'},
                     {text: '友情链接', link: '/friends/'},
