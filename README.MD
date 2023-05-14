@@ -23,3 +23,10 @@ npm install # or yarn install
 # develop
 npm run docs:dev # or yarn docs:dev
 ```
+
+## 图
+
+![1](https://raw.githubusercontent.com/kuschzzp/images_repository/main/images/20230514160427.png)
+
+
+![2](https://raw.githubusercontent.com/kuschzzp/images_repository/main/images/20230514160536.png)
