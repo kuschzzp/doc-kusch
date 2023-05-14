@@ -92,12 +92,22 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 // ],
             },
             {
+                text: '数据库',
+                link: '/database/',
+                // items: [
+                //   { text: '技术文档', link: '/pages/9a7ee40fc232253e/' },
+                //   { text: 'GitHub技巧', link: '/pages/4c778760be26d8b3/' },
+                //   { text: 'Nodejs', link: '/pages/117708e0af7f0bd9/' },
+                //   { text: '博客搭建', link: '/pages/41f87d890d0a02af/' },
+                // ],
+            },
+            {
                 text: '更多',
                 link: '/more/',
                 items: [
-                    {text: '数据库', link: '/pages/1aff85/'},
                     {text: '我的电脑', link: '/pages/words/'},
                     {text: '科学技巧', link: '/pages/science/'},
+                    {text: '杂文铺', link: '/pages/d9c430/'},
                     {text: '友情链接', link: '/friends/'},
                 ],
             },

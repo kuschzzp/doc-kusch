@@ -29,7 +29,7 @@ const htmlModule: VdoingThemeConfig['htmlModules'] = {
       font-weight: bold;
       margin: 0 0 8px 0;
     ">公众号</p>
-    <img src="http://img.superkusch.fun/docs/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg"  style="width:100%;" />
+    <img src="https://img.superkusch.fun/docs/%E5%85%AC%E4%BC%97%E5%8F%B7.jpg"  style="width:100%;" />
     关注公众号，可获取更多有趣的东西!
     </p>
     </div>`,
