@@ -159,23 +159,24 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
 
         //*** 以下是Vdoing主题相关配置，文档：https://doc.xugaoyi.com/pages/a20ce8/ ***//
 
-        // category: false, // 是否打开分类功能，默认true
-        // tag: false, // 是否打开标签功能，默认true
-        // archive: false, // 是否打开归档功能，默认true
-        // categoryText: '随笔', // 碎片化文章（_posts文件夹的文章）预设生成的分类值，默认'随笔'
+        category: true, // 是否打开分类功能，默认true
+        tag: true, // 是否打开标签功能，默认true
+        archive: true, // 是否打开归档功能，默认true
+        categoryText: '随笔', // 碎片化文章（_posts文件夹的文章）预设生成的分类值，默认'随笔'
 
         // pageStyle: 'line', // 页面风格，可选值：'card'卡片 | 'line' 线（未设置bodyBgImg时才生效）， 默认'card'。 说明：card时背景显示灰色衬托出卡片样式，line时背景显示纯色，并且部分模块带线条边框
 
         //好像没有用，但是不写顶部就没有颜色
-        bodyBgImg: 'linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%)',
+        // bodyBgImg: 'linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%)',
 
+        // 图片压缩网址： https://www.img2go.com/zh/compress-image  感觉压缩的贼棒
         // bodyBgImg: '/img/bg01.jpg',
-        // bodyBgImg: [
-        //     '/img/bg01_sm.jpg',
-        //     '/img/bg02_sm.jpg'
-        // ], // body背景大图，默认无。 单张图片 String | 多张图片 Array, 多张图片时隔bodyBgImgInterval切换一张。
-        // bodyBgImgOpacity: 1, // body背景图透明度，选值 0.1~1.0, 默认0.5
-        // bodyBgImgInterval: 300, // body多张背景图时的切换间隔, 默认15，单位s
+        bodyBgImg: [
+            '/img/bg01_sm_sm.jpg',
+            '/img/bg02_sm_sm.jpg'
+        ], // body背景大图，默认无。 单张图片 String | 多张图片 Array, 多张图片时隔bodyBgImgInterval切换一张。
+        bodyBgImgOpacity: 1, // body背景图透明度，选值 0.1~1.0, 默认0.5
+        bodyBgImgInterval: 300, // body多张背景图时的切换间隔, 默认15，单位s
         // titleBadge: false, // 文章标题前的图标是否显示，默认true
         // titleBadgeIcons: [ // 文章标题前图标的地址，默认主题内置图标
         //   '图标地址1',
@@ -262,7 +263,6 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 content: '后端博客,个人技术博客,后端,后端开发,后端框架,Java后端,后端面试题,技术文档,学习,面试,Java,Spring,SpringBoot,SpringCloud,Jenkins,K8s,git,github,markdown',
             },
         ],
-        ['meta', {name: 'baidu-site-verification', content: '7F55weZDDc'}], // 百度统计的站长验证（你可以去掉）
         ['meta', {name: 'theme-color', content: '#11a8cd'}], // 移动浏览器主题颜色
         // [
         //   'script',
