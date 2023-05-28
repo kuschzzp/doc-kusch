@@ -1,4 +1,6 @@
 import LastReadingPopup from './components/LastReadingPopup.vue'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 export default ({
                     Vue, // VuePress 正在使用的 Vue 构造函数
@@ -7,7 +9,8 @@ export default ({
                     siteData, // 站点元数据
                     isServer // 当前应用配置是处于 服务端渲染 或 客户端
                 }) => {
-    // 判断是否绑定时间是否绑定成功
+
+    Vue.use(ElementUI)
     let isMounted = false;
     // 最后一次阅读位置跳转
     Vue.component(LastReadingPopup.name, LastReadingPopup);
