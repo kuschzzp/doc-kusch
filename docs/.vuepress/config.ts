@@ -264,6 +264,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
             },
         ],
         ['meta', {name: 'theme-color', content: '#11a8cd'}], // 移动浏览器主题颜色
+        ['script', { src: 'https://cdn.bootcdn.net/ajax/libs/axios/1.3.6/axios.min.js' }],//引入axios install的方式有问题，用这种方式吧！！！！
         // [
         //   'script',
         //   {
