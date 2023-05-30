@@ -100,34 +100,12 @@ export default {
 </script>
 
 <style>
-::selection {
-  background: rgba(0,149,255,.1);
-}
-
-body:before{
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: .3;
-  z-index: -1;
-  content: "";
-  position: fixed;
-  background-image: linear-gradient( 135deg, #CE9FFC 10%, #7367F0 100%);
-}
-
-.grid-content {
-  margin-top: 1em;
-  border-radius: 4px;
-  min-height: 50px;
-}
 
 .el-select .el-input {
   width: 80px;
 }
 .input-with-select .el-input-group__prepend {
   background-color: #fff;
-
 }
 
 .box-card {
@@ -135,53 +113,4 @@ body:before{
   margin-bottom: 10em!important;
   opacity: .8;
 }
-
-@media screen and (max-width: 700px){
-  .box-card {
-    margin-top: 1em!important;
-    margin-bottom: 1em!important;
-  }
-}
-.download h3{
-  margin-top: 2em;
-}
-
-.download button{
-  margin-right: 0.5em;
-  margin-left: 0.5em;
-}
-
-.waterfall {
-  -moz-column-count: 3;
-  -webkit-column-count: 3;
-  column-count: 3;
-  -moz-column-gap: 1em;
-  -webkit-column-gap: 1em;
-  column-gap: 1em;
-}
-
-.item {
-  padding: 5px;
-  break-inside: avoid;
-}
-
-.item img {
-  width: 100%;
-  margin-bottom: 10px;
-}
-.typo {
-  text-align: left;
-}
-.typo a {
-  color: #2c3e50;
-  text-decoration:none;
-}
-
-hr{
-  height: 10px;
-  margin-bottom: .8em;
-  border: none;
-  border-bottom: 1px solid rgba(0,0,0,.12);
-}
-
 </style>
