@@ -11,11 +11,11 @@
       <div class="static-content-item">
         <el-divider direction="horizontal"></el-divider>
       </div>
-      <el-form-item label="视频链接" prop="videoUrl" class="required" >
+      <el-form-item label="视频链接" prop="videoUrl" class="required">
         <el-input v-model="formData.videoUrl" type="text" clearable></el-input>
       </el-form-item>
       <el-form-item label="线路选择" prop="line" class="required">
-        <el-select v-model="formData.line"  clearable>
+        <el-select v-model="formData.line" clearable>
           <el-option v-for="(item, index) in lineOptions" :key="index" :label="item.label" :value="item.value"
                      :disabled="item.disabled"></el-option>
         </el-select>
@@ -33,20 +33,20 @@ export default {
   name: "VideoParse",
   data() {
     return {
-      loading:false,
+      loading: false,
       containerHeight: '33vh',
       tip: "关于更多iframe属性见：https://developer.mozilla.org/zh-CN/docs/web/html/element/iframe",
-      finalUrl:'https://okjx.cc/?url=',
+      finalUrl: 'https://jx.xmflv.com/?url=',
       formData: {
         videoUrl: "",
-        line: "https://okjx.cc/?url=",
+        line: "https://jx.xmflv.com/?url=",
       },
       rules: {
         videoUrl: [{
           required: true,
           message: '请填写视频链接哈～～～',
         }, {
-          pattern:  /^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/,
+          pattern: /^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/,
           trigger: ['blur', 'change'],
           message: '请输入正确的网址'
         }],
@@ -55,8 +55,8 @@ export default {
           message: '请选择线路哈～～～',
         }],
       },
-      lineOptions:[{
-        "label": "线路一(推荐使用)",
+      lineOptions: [{
+        "label": "线路一(暂时失效)",
         "value": "https://okjx.cc/?url=",
       }, {
         "label": "线路二",
@@ -70,7 +70,13 @@ export default {
       }, {
         "label": "线路五",
         "value": "https://jx.jsonplayer.com/player/?url="
-      }],
+      }, {
+        "label": "线路六(推荐使用)",
+        "value": "https://jx.xmflv.com/?url=",
+      }, {
+        "label": "线路七",
+        "value": "https://vip.bljiex.com/so.php?wd=",
+      },],
     }
   },
   methods: {
@@ -82,9 +88,9 @@ export default {
           this.finalUrl = this.formData.line + this.formData.videoUrl
           this.loading = true
           let status = false;
-          setTimeout(()=>{
+          setTimeout(() => {
             this.loading = false
-          },4000)
+          }, 4000)
         }
       })
     },

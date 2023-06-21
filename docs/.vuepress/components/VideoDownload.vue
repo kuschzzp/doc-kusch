@@ -4,7 +4,7 @@
       <div class="main" v-loading="loading">
         <div class="grid-content">
           <el-input placeholder="请粘贴分享链接" v-model="input" id="url" lass="input-with-select">
-            <el-select v-model="select" slot="prepend" placeholder="请选择">
+            <el-select class="thisSelect" v-model="select" slot="prepend" placeholder="请选择">
               <el-option label="视频" value="1"></el-option>
               <el-option label="图集" value="2"></el-option>
             </el-select>
@@ -99,9 +99,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
-.el-select .el-input {
+.thisSelect{
   width: 80px;
 }
 .input-with-select .el-input-group__prepend {
