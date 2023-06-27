@@ -172,8 +172,8 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
         // 图片压缩网址： https://www.img2go.com/zh/compress-image  感觉压缩的贼棒
         // bodyBgImg: '/img/bg01.jpg',
         bodyBgImg: [
-            '/img/bg01_sm_sm.jpg',
-            '/img/bg02_sm_sm.jpg'
+            '/img/bg01_sm_sm_sm.jpg',
+            '/img/bg02_sm_sm_sm.jpg'
         ], // body背景大图，默认无。 单张图片 String | 多张图片 Array, 多张图片时隔bodyBgImgInterval切换一张。
         bodyBgImgOpacity: 1, // body背景图透明度，选值 0.1~1.0, 默认0.5
         bodyBgImgInterval: 300, // body多张背景图时的切换间隔, 默认15，单位s
