@@ -4,6 +4,7 @@
             width="100%" :style="{ height: containerHeight }" allowtransparency="true" allow="fullscreen"
             style="border: 0" scrolling="no">
       IE：看我做啥？我又不是不支持！
+      <script src="https://2gether.video/release/extension.website.user.js"></script>
     </iframe>
 
     <el-form :model="formData" ref="vForm" :rules="rules" label-position="left" label-width="130px"
