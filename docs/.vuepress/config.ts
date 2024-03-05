@@ -102,6 +102,10 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 // ],
             },
             {
+                text: '对线',
+                link: '/interview/'
+            },
+            {
                 text: '更多',
                 link: '/more/',
                 items: [
