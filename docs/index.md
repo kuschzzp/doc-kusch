@@ -2,7 +2,7 @@
 home: true
 pageClass: vdoing-index-class
 # heroImage: /img/avatar.png   这个是页面上的图片，放上就难看了
-heroText: Kusch's Blog
+heroText: 张先生的部落格
 tagline: Kusch的小破站，才疏学浅，积跬步可以至千里！
 # actionText: 立刻进入 →
 # actionLink: /web/
