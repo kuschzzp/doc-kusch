@@ -23,7 +23,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
     locales: {
         '/': {
             lang: 'zh-CN',
-            title: "圆润胖先生的博客",
+            title: "圆润胖先生的学习笔记",
             description: 'Kusch的小破站，时不时写写文章，整点奇怪的东西。',
         }
     },
