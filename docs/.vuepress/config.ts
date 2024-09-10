@@ -102,6 +102,10 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 // ],
             },
             {
+                text: '整点儿AI',
+                link: '/ai/',
+            },
+            {
                 text: '对线',
                 link: '/interview/'
             },
