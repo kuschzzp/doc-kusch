@@ -375,9 +375,9 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
         [
             'dynamic-title',
             {
-                showIcon: '/favicon.ico',
+                showIcon: '/img/favicon.ico',
                 showText: '(/≧▽≦/)咦！来啦～',
-                hideIcon: '/failure.ico',
+                hideIcon: '/img/failure.ico',
                 hideText: '(●—●)喔哟，别走嘛！',
                 recoverTime: 2000,
             },
