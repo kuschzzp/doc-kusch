@@ -23,3 +23,5 @@ urls.txt
 .DS_Store
 
 ROOT
+
+.obsidian/**
