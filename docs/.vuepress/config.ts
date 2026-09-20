@@ -13,12 +13,12 @@ const DOMAIN_NAME = 'superkusch.fun' // 域名 (不带https)
 const WEB_SITE = `https://${DOMAIN_NAME}` // 网址
 
 export default defineConfig4CustomTheme<VdoingThemeConfig>({
-    theme: 'vdoing', // 使用npm主题包
+    // theme: 'vdoing', // 使用npm主题包
 
     dest: './ROOT',  // 设置build后的输出目录
 
     // 使用本地主题包 也就是下面的 vdoing 文件夹，如果使用npm主题包，那那个文件夹就是没用的
-    // theme: resolve(__dirname, '../../vdoing'),
+    theme: resolve(__dirname, '../../vdoing'),
 
     locales: {
         '/': {

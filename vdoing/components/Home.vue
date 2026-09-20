@@ -3,7 +3,6 @@
     <!-- banner块 s -->
     <div
       class="banner"
-      :class="{ 'hide-banner': !showBanner }"
       :style="bannerBgStyle"
     >
       <div
@@ -125,14 +124,7 @@
         <template
           v-else-if="!homeData.postList || homeData.postList === 'detailed'"
         >
-          <PostList :currentPage="currentPage" :perPage="perPage" />
-          <Pagination
-            :total="total"
-            :perPage="perPage"
-            :currentPage="currentPage"
-            @getCurrentPage="handlePagination"
-            v-show="Math.ceil(total / perPage) > 1"
-          />
+          <PostList infinite showHeader />
         </template>
 
         <Content class="theme-vdoing-content custom card-box" />
@@ -151,7 +143,8 @@
         <TagsBar
           v-if="$themeConfig.tag !== false && $categoriesAndTags.tags.length"
           :tagsData="$categoriesAndTags.tags"
-          :length="30"
+          :length="12"
+          compact
         />
         <div
           class="custom-html-box card-box"
@@ -170,7 +163,6 @@ import Slide from "@better-scroll/slide"
 import MainLayout from '@theme/components/MainLayout'
 import PostList from '@theme/components/PostList'
 import UpdateArticle from '@theme/components/UpdateArticle'
-import Pagination from '@theme/components/Pagination'
 import BloggerBar from '@theme/components/BloggerBar'
 import CategoriesBar from '@theme/components/CategoriesBar'
 import TagsBar from '@theme/components/TagsBar'
@@ -187,11 +179,7 @@ export default {
       slide: null,
       currentPageIndex: 0,
       playTimer: 0,
-      mark: 0,
-
-      total: 0, // 总长
-      perPage: 10, // 每页长
-      currentPage: 1// 当前页
+      mark: 0
     }
   },
   computed: {
@@ -206,12 +194,6 @@ export default {
     homeSidebarB() {
       const { htmlModules } = this.$themeConfig
       return htmlModules ? htmlModules.homeSidebarB : ''
-    },
-    showBanner() { // 当分页不在第一页时隐藏banner栏
-      return this.$route.query.p
-        && this.$route.query.p != 1
-        && (!this.homeData.postList || this.homeData.postList === 'detailed')
-        ? false : true
     },
     bannerBgStyle() {
       let bannerBg = this.homeData.bannerBg
@@ -241,19 +223,12 @@ export default {
       };
     }
   },
-  components: { NavLink, MainLayout, PostList, UpdateArticle, BloggerBar, CategoriesBar, TagsBar, Pagination },
-  created() {
-    this.total = this.$sortPosts.length
-  },
+  components: { NavLink, MainLayout, PostList, UpdateArticle, BloggerBar, CategoriesBar, TagsBar },
   beforeMount() {
     this.isMQMobile = window.innerWidth < MOBILE_DESKTOP_BREAKPOINT ? true : false; // vupress在打包时不能在beforeCreate(),created()访问浏览器api（如window）
   },
   mounted() {
-    if (this.$route.query.p) {
-      this.currentPage = Number(this.$route.query.p)
-    }
-
-    if (this.hasFeatures && this.isMQMobile && (!this.$route.query.p || this.$route.query.p == 1)) {
+    if (this.hasFeatures && this.isMQMobile) {
       this.init()
     }
 
@@ -272,22 +247,6 @@ export default {
   beforeDestroy() {
     clearTimeout(this.playTimer)
     this.slide && this.slide.destroy()
-  },
-  watch: {
-    '$route.query.p'() {
-      if (!this.$route.query.p) {
-        this.currentPage = 1
-      } else {
-        this.currentPage = Number(this.$route.query.p)
-      }
-
-      if (this.hasFeatures && this.currentPage === 1 && this.isMQMobile) {
-        setTimeout(() => {
-          this.slide && this.slide.destroy()
-          this.init()
-        }, 0)
-      }
-    }
   },
   methods: {
     init() {
@@ -325,9 +284,6 @@ export default {
       this.playTimer = setTimeout(() => {
         this.slide.next()
       }, 4000)
-    },
-    handlePagination(i) { // 分页
-      this.currentPage = i
     },
     getScrollTop() {
       return window.pageYOffset

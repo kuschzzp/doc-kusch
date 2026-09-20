@@ -1,90 +1,53 @@
 <template>
-  <div class="pagination">
-    <span
-      class="card-box prev iconfont icon-jiantou-zuo"
-      :class="{ disabled: currentPage === 1 }"
-      @click="goPrex()"
+  <nav class="pagination card-box" aria-label="文章分页">
+    <button
+      class="pagination-nav prev"
+      type="button"
+      :disabled="currentPage === 1"
+      aria-label="上一页"
+      @click="goPrev"
     >
-      <p>上一页</p>
-    </span>
+      <span class="iconfont icon-jiantou-zuo" aria-hidden="true"></span>
+      <span class="nav-label">上一页</span>
+    </button>
 
-    <!-- 分页在5页及以下时 -->
-    <div class="pagination-list" v-if="pages <= 5">
-      <span
-        class="card-box"
-        v-for="item in pages"
-        :key="item"
-        :class="{ active: currentPage === item }"
-        @click="goIndex(item)"
-        >{{ item }}</span
-      >
-    </div>
-    <!-- 分页在5页以上 -->
-    <div class="pagination-list" v-else>
-      <!-- 一号位 -->
-      <span
-        class="card-box"
-        :class="{ active: currentPage === 1 }"
-        @click="goIndex(1)"
-        >1</span
-      >
-
-      <!-- 二号位 -->
-      <span
-        class="ellipsis ell-two"
-        v-show="currentPage > 3"
-        @click="goIndex(currentPage - 2)"
-        title="上两页"
-      />
-      <!--这里没有使用v-if的原因是因为部署版本在当前页大于3时刷新页面出现了一些bug-->
-      <span
-        class="card-box"
-        v-show="currentPage <= 3"
-        :class="{ active: currentPage === 2 }"
-        @click="goIndex(2)"
-        >2</span
-      >
-
-      <!-- 三号位 -->
-      <span
-        class="card-box"
-        :class="{ active: currentPage >= 3 && currentPage <= pages - 2 }"
-        @click="goIndex(threeNum())"
-        >{{ threeNum() }}</span
-      >
-
-      <!-- 四号位 -->
-      <span
-        class="ellipsis ell-four"
-        v-show="currentPage < pages - 2"
-        @click="goIndex(currentPage + 2)"
-        title="下两页"
-      />
-      <span
-        class="card-box"
-        v-show="currentPage >= pages - 2"
-        :class="{ active: currentPage === pages - 1 }"
-        @click="goIndex(pages - 1)"
-        >{{ pages - 1 }}</span
-      >
-
-      <!-- 五号位 -->
-      <span
-        class="card-box"
-        :class="{ active: currentPage === pages }"
-        @click="goIndex(pages)"
-        >{{ pages }}</span
-      >
+    <div class="pagination-list" role="group" aria-label="页码">
+      <button
+        v-for="item in pageItems"
+        :key="item.key"
+        :class="{
+          active: item.type === 'page' && currentPage === item.page,
+          ellipsis: item.type === 'gap'
+        }"
+        :aria-current="
+          item.type === 'page' && currentPage === item.page ? 'page' : null
+        "
+        :aria-label="item.type === 'page' ? `第 ${item.page} 页` : null"
+        :disabled="item.type === 'gap'"
+        type="button"
+        @click="item.type === 'page' && goIndex(item.page)"
+      >{{ item.type === 'page' ? item.page : '…' }}</button>
     </div>
 
     <span
-      class="card-box next iconfont icon-jiantou-you"
-      :class="{ disabled: currentPage === pages }"
-      @click="goNext()"
+      class="mobile-page-state"
+      :aria-label="`第 ${currentPage} 页，共 ${pages} 页`"
+      aria-live="polite"
     >
-      <p>下一页</p>
+      {{ currentPage }} / {{ pages }}
     </span>
-  </div>
+
+    <button
+      class="pagination-nav next"
+      type="button"
+      :disabled="currentPage === pages"
+      aria-label="下一页"
+      @click="goNext"
+    >
+      <span class="nav-label">下一页</span>
+      <span class="iconfont icon-jiantou-you" aria-hidden="true"></span>
+    </button>
+  </nav>
 </template>
 
 <script>
@@ -106,23 +69,43 @@ export default {
   computed: {
     pages() { // 总页数
       return Math.ceil(this.total / this.perPage)
+    },
+    pageItems() {
+      if (this.pages <= 7) {
+        return Array.from({ length: this.pages }, (_, index) => ({
+          key: `page-${index + 1}`,
+          type: 'page',
+          page: index + 1
+        }))
+      }
+
+      let start = Math.max(2, this.currentPage - 1)
+      let end = Math.min(this.pages - 1, this.currentPage + 1)
+
+      if (this.currentPage <= 4) {
+        start = 2
+        end = 5
+      } else if (this.currentPage >= this.pages - 3) {
+        start = this.pages - 4
+        end = this.pages - 1
+      }
+
+      const items = [{ key: 'page-1', type: 'page', page: 1 }]
+      if (start > 2) {
+        items.push({ key: 'gap-start', type: 'gap' })
+      }
+      for (let page = start; page <= end; page++) {
+        items.push({ key: `page-${page}`, type: 'page', page })
+      }
+      if (end < this.pages - 1) {
+        items.push({ key: 'gap-end', type: 'gap' })
+      }
+      items.push({ key: `page-${this.pages}`, type: 'page', page: this.pages })
+      return items
     }
   },
   methods: {
-    threeNum() { // 三号位页码计算
-      let num = 3
-      const currentPage = this.currentPage
-      const pages = this.pages
-      if (currentPage < 3) {
-        num = 3
-      } else if (currentPage > (pages - 3)) {
-        num = pages - 2
-      } else {
-        num = currentPage
-      }
-      return num
-    },
-    goPrex() {
+    goPrev() {
       let currentPage = this.currentPage
       if (currentPage > 1) {
         this.handleEmit(--currentPage)
@@ -148,93 +131,116 @@ export default {
 
 <style lang='stylus'>
 .pagination
-  position relative
-  height 60px
-  text-align center
-  @media (max-width 720px)
-    margin-left 1px
-    margin-right 1px
-  span
-    line-height 1rem
-    opacity 0.9
+  width max-content
+  max-width calc(100% - 1.8rem)
+  min-height 3.25rem
+  margin 0 auto 3rem
+  padding 0.35rem
+  box-sizing border-box
+  display flex
+  align-items center
+  justify-content center
+  gap 0.25rem
+  button
+    width 2.35rem
+    height 2.35rem
+    padding 0
+    border 1px solid transparent
+    border-radius 5px
+    box-sizing border-box
+    background transparent
+    color var(--textColor)
+    font inherit
+    font-size 0.88rem
+    line-height 1
     cursor pointer
-    &:hover
+    transition background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease
+    &:hover:not(:disabled)
+      border-color rgba(17, 168, 205, 0.25)
+      background rgba(17, 168, 205, 0.08)
       color $accentColor
-    &.ellipsis
-      opacity 0.5
-      &::before
-        content '...'
-        font-size 1.2rem
-      @media (any-hover hover)
-        &.ell-two
-          &:hover
-            &::before
-              content '«'
-        &.ell-four
-          &:hover
-            &::before
-              content '»'
-  > span
-    position absolute
-    top 0
-    padding 1rem 1.2rem
-    font-size 0.95rem
-    &::before
-      font-size 0.4rem
-    &.disabled
-      color rgba(125, 125, 125, 0.5)
-    &.prev
-      left 0
-      // border-top-right-radius 32px
-      // border-bottom-right-radius 32px
-      &::before
-        margin-right 0.3rem
-    &.next
-      right 0
-      // border-top-left-radius 32px
-      // border-bottom-left-radius 32px
-      &::before
-        float right
-        margin-left 0.3rem
-    p
-      display inline
-      line-height 0.95rem
+      transform translateY(-1px)
+    &:active:not(:disabled)
+      transform translateY(0)
+    &:focus-visible
+      outline 2px solid $accentColor
+      outline-offset 2px
+    &:disabled
+      border-color transparent
+      background transparent
+      color var(--textColor)
+      cursor not-allowed
+      opacity 0.28
+      transform none
+  .pagination-nav
+    width auto
+    min-width 5.2rem
+    padding 0 0.75rem
+    display inline-flex
+    align-items center
+    justify-content center
+    gap 0.45rem
+    .iconfont
+      font-size 0.55rem
   .pagination-list
-    span
-      display inline-block
-      width 2.5rem
-      height 2.5rem
-      line-height 2.5rem
-      margin 0.3rem
+    display flex
+    align-items center
+    gap 0.15rem
+    button
       &.active
         background $accentColor
-        color var(--mainBg)
-@media (max-width 800px)
+        border-color $accentColor
+        color #fff
+        font-weight 700
+        &:hover
+          background $accentColor
+          color #fff
+          transform none
+      &.ellipsis
+        border-color transparent
+        opacity 0.45
+  .mobile-page-state
+    min-width 4.5rem
+    display none
+    color var(--textColor)
+    font-size 0.86rem
+    font-variant-numeric tabular-nums
+    text-align center
+    opacity 0.68
+.theme-mode-dark
   .pagination
-    > span
-      padding 1rem 1.5rem
-      p
-        display none
-// 719px
+    button
+      &:hover:not(:disabled)
+        border-color rgba(177, 96, 234, 0.32)
+        background rgba(177, 96, 234, 0.1)
+        color #b160ea
+      &:focus-visible
+        outline-color #b160ea
+    .pagination-list button.active
+      border-color #904ac2
+      background #904ac2
+      color #fff
 @media (max-width $MQMobile)
   .pagination
-    > span // 左右按钮
-      padding 0.9rem 1.5rem
+    width calc(100% - 1.8rem)
+    max-width 28rem
+    justify-content space-between
     .pagination-list
-      span
-        width 2.3rem
-        height 2.3rem
-        line-height 2.3rem
-        margin 0.25rem
+      display none
+    .mobile-page-state
+      display block
+    .pagination-nav
+      min-width 4.75rem
+      padding 0 0.65rem
 @media (max-width 390px)
   .pagination
-    > span // 左右按钮
-      padding 0.8rem 1.3rem
-    .pagination-list
-      span
-        width 2rem
-        height 2rem
-        line-height 2rem
-        margin 0.1rem
-        margin-top 0.3rem
+    .pagination-nav
+      min-width 2.5rem
+      width 2.5rem
+      padding 0
+      .nav-label
+        display none
+@media (prefers-reduced-motion: reduce)
+  .pagination button
+    transition none
 </style>
