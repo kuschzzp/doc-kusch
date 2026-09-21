@@ -1,27 +1,69 @@
 <template>
-  <div class="login-form">
-    <div class="form-header">用户名</div>
-    <div>
-      <input
-          type="text"
-          class="form-control"
-          placeholder="请输入用户名 ..."
-          v-model="username"
-      />
-    </div>
-    <div class="form-header">密码</div>
-    <div>
-      <input
-          type="password"
-          class="form-control"
-          placeholder="请输入密码 ..."
-          v-model="password"
-      />
-    </div>
+  <div class="private-login">
+    <section class="private-login-card" aria-labelledby="private-login-title">
+      <div class="private-login-mark" aria-hidden="true">锁</div>
+      <p class="private-login-eyebrow">PRIVATE CONTENT</p>
+      <h2 id="private-login-title">{{ pageTitle }}</h2>
+      <p class="private-login-description">{{ pageDescription }}</p>
 
-    <div class="btn-row">
-      <button class="btn" @click="login">登录</button>
-    </div>
+      <div class="private-login-target" v-if="targetTitle">
+        <span>正在访问</span>
+        <strong>{{ targetTitle }}</strong>
+      </div>
+
+      <form class="private-login-form" @submit.prevent="login" novalidate>
+        <div class="private-login-field">
+          <label for="private-username">用户名</label>
+          <input
+            id="private-username"
+            v-model.trim="username"
+            type="text"
+            name="username"
+            autocomplete="username"
+            placeholder="请输入访问用户名"
+            :aria-invalid="errorMessage ? 'true' : 'false'"
+          />
+        </div>
+
+        <div class="private-login-field">
+          <div class="private-login-label-row">
+            <label for="private-password">密码</label>
+            <button
+              class="private-login-toggle"
+              type="button"
+              :aria-pressed="showPassword ? 'true' : 'false'"
+              @click="showPassword = !showPassword"
+            >
+              {{ showPassword ? '隐藏密码' : '显示密码' }}
+            </button>
+          </div>
+          <input
+            id="private-password"
+            v-model="password"
+            :type="showPassword ? 'text' : 'password'"
+            name="password"
+            autocomplete="current-password"
+            placeholder="请输入访问密码"
+            :aria-invalid="errorMessage ? 'true' : 'false'"
+          />
+        </div>
+
+        <p class="private-login-error" v-if="errorMessage" role="alert">
+          {{ errorMessage }}
+        </p>
+
+        <button class="private-login-submit" type="submit" :disabled="isSubmitting">
+          {{ isSubmitting ? '正在验证…' : '进入文章' }}
+        </button>
+      </form>
+
+      <p class="private-login-hint">验证成功后将自动返回原文章，登录状态保存在本设备。</p>
+
+      <div class="private-login-actions">
+        <button type="button" @click="goBack">返回上一页</button>
+        <router-link to="/">回到首页</router-link>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -31,6 +73,9 @@ export default {
     return {
       username: "",
       password: "",
+      errorMessage: "",
+      isSubmitting: false,
+      showPassword: false,
       privateInfo: {
         username: "",
         password: "",
@@ -41,20 +86,50 @@ export default {
       },
     };
   },
-  mounted() {
-    // Enter 键也能触发登录按钮
-    document.onkeyup = (e) => {
-      let key = window.event.keyCode;
-      if (key == 13) {
-        this.login();
+  computed: {
+    verifyMode() {
+      return this.$route.query.verifyMode || "single";
+    },
+    targetTitle() {
+      const targetPath = this.$route.query.toPath;
+      const target = (this.$filterPosts || []).find((item) => item.path === targetPath);
+      return target ? target.title : "";
+    },
+    pageTitle() {
+      return this.verifyMode === "first" ? "欢迎访问" : "内容需要验证";
+    },
+    pageDescription() {
+      if (this.verifyMode === "first") {
+        return "完成验证后即可继续浏览站点内容。";
       }
-    };
+      if (this.verifyMode === "all") {
+        return "本站部分内容需要登录后才能阅读。";
+      }
+      return "这篇文章是私密内容，请验证身份后继续阅读。";
+    }
   },
   methods: {
     /**
      * 登录验证
      */
     login() {
+      if (this.isSubmitting) return;
+
+      this.errorMessage = "";
+      if (!this.username && !this.password) {
+        this.showError("请输入用户名和密码");
+        return;
+      }
+      if (!this.username) {
+        this.showError("请输入用户名");
+        return;
+      }
+      if (!this.password) {
+        this.showError("请输入密码");
+        return;
+      }
+
+      this.isSubmitting = true;
       let { privateInfo } = this;
       // 获取全局配置
       let { username, password, loginKey, expire, firstLoginKey, loginInfo } =
@@ -87,10 +162,7 @@ export default {
             this.storageLocalAndJump(loginKey, true);
           } else if (!check) {
             this.password = ""; // 清空密码
-            addTip(
-                "用户名或者密码错误！请联系博主获取用户名和密码！",
-                "danger"
-            );
+            this.showError("用户名或密码错误，请联系博主获取访问信息");
           }
         } else {
           // 如果是单个文章验证
@@ -154,19 +226,27 @@ export default {
               this.storageLocalAndJump(loginKey, true);
             } else {
               this.password = ""; // 清空密码
-              addTip(
-                  "用户名或者密码错误！请联系博主获取用户名和密码！",
-                  "danger"
-              );
+              this.showError("用户名或密码错误，请联系博主获取访问信息");
             }
           }
         }
       } else if (this.username == "" && this.password != "") {
-        addTip("用户名不能为空！", "warning");
+        this.showError("请输入用户名");
       } else if (this.username != "" && this.password == "") {
-        addTip("密码不能为空！", "warning");
+        this.showError("请输入密码");
       } else {
-        addTip("您访问的文章是私密文章，请先输入用户名和密码！", "info");
+        this.showError("请输入用户名和密码");
+      }
+    },
+    showError(message) {
+      this.errorMessage = message;
+      this.isSubmitting = false;
+    },
+    goBack() {
+      if (typeof window !== "undefined" && window.history.length > 1) {
+        this.$router.go(-1);
+      } else {
+        this.$router.push({ path: "/" });
       }
     },
     /**
@@ -308,42 +388,263 @@ function nextAllTipElement(elem) {
 }
 </script>
 
-<style lang="stylus">
-.login-form {
-  padding: 1rem;
+<style>
+.private-login-page .content-wrapper > h1 {
+  display: none;
+}
+
+.private-login {
+  max-width: 34rem;
+  margin: 0 auto 2rem;
+  padding: 0.5rem;
   box-sizing: border-box;
+}
 
-  .btn-row {
-    margin-top: 1rem;
-    text-align: center;
+.private-login .private-login-card {
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  border: 1px solid var(--borderColor, rgba(0, 0, 0, 0.15));
+  border-radius: 10px;
+  background: var(--mainBg, #fff);
+  box-shadow: 0 12px 35px rgba(0, 50, 60, 0.08);
+}
+
+.private-login .private-login-mark {
+  width: 3.25rem;
+  height: 3.25rem;
+  margin: 0 auto 1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(17, 168, 205, 0.12);
+  color: #11a8cd;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.private-login .private-login-eyebrow {
+  margin: 0;
+  color: #11a8cd;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.private-login h2 {
+  margin: 0.45rem 0 0;
+  color: var(--textColor, #00323c);
+  font-size: 1.6rem;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.private-login .private-login-description {
+  max-width: 25rem;
+  margin: 0.75rem auto 0;
+  color: var(--textColor, #00323c);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  opacity: 0.68;
+  text-align: center;
+}
+
+.private-login .private-login-target {
+  margin: 1.35rem 0 0;
+  padding: 0.8rem 0.9rem;
+  border-left: 3px solid #11a8cd;
+  background: rgba(17, 168, 205, 0.07);
+  color: var(--textColor, #00323c);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.private-login .private-login-target span {
+  display: block;
+  margin-bottom: 0.18rem;
+  font-size: 0.72rem;
+  opacity: 0.58;
+}
+
+.private-login .private-login-target strong {
+  display: block;
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.private-login .private-login-form {
+  margin-top: 1.35rem;
+}
+
+.private-login .private-login-field {
+  margin-top: 1rem;
+}
+
+.private-login .private-login-field:first-child {
+  margin-top: 0;
+}
+
+.private-login .private-login-field label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--textColor, #00323c);
+  font-size: 0.83rem;
+  font-weight: 600;
+}
+
+.private-login .private-login-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.private-login .private-login-label-row label {
+  margin-bottom: 0;
+}
+
+.private-login input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.68rem 0.8rem;
+  box-sizing: border-box;
+  border: 1px solid var(--borderColor, rgba(0, 0, 0, 0.15));
+  border-radius: 5px;
+  outline: none;
+  background: var(--mainBg, #fff);
+  color: var(--textColor, #00323c);
+  font-family: inherit;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.private-login input::placeholder {
+  color: var(--textColor, #00323c);
+  opacity: 0.4;
+}
+
+.private-login input:focus {
+  border-color: #11a8cd;
+  box-shadow: 0 0 0 3px rgba(17, 168, 205, 0.14);
+}
+
+.private-login .private-login-toggle {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #11a8cd;
+  font-family: inherit;
+  font-size: 0.76rem;
+  cursor: pointer;
+}
+
+.private-login .private-login-toggle:hover,
+.private-login .private-login-actions button:hover,
+.private-login .private-login-actions a:hover {
+  color: #0d8cae;
+}
+
+.private-login .private-login-toggle:focus-visible,
+.private-login .private-login-actions button:focus-visible,
+.private-login .private-login-actions a:focus-visible {
+  outline: 2px solid #11a8cd;
+  outline-offset: 3px;
+}
+
+.private-login .private-login-error {
+  margin: 0.8rem 0 0;
+  color: #ff5722;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.private-login .private-login-submit {
+  width: 100%;
+  min-height: 2.8rem;
+  margin-top: 1.2rem;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 5px;
+  background: #11a8cd;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.private-login .private-login-submit:hover:not(:disabled) {
+  background: #0d95b6;
+}
+
+.private-login .private-login-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.private-login .private-login-submit:focus-visible {
+  outline: 2px solid #11a8cd;
+  outline-offset: 3px;
+}
+
+.private-login .private-login-submit:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.private-login .private-login-hint {
+  margin: 1rem 0 0;
+  color: var(--textColor, #00323c);
+  font-size: 0.76rem;
+  line-height: 1.55;
+  opacity: 0.55;
+  text-align: center;
+}
+
+.private-login .private-login-actions {
+  margin-top: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+
+.private-login .private-login-actions button,
+.private-login .private-login-actions a {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #11a8cd;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 719px) {
+  .private-login {
+    margin-bottom: 1rem;
+    padding: 0;
   }
 
-  .btn {
-    padding: 0.6rem 2rem;
-    outline: none;
-    background-color: #60C084;
-    color: white;
-    border: 0;
-    cursor: pointer;
+  .private-login .private-login-card {
+    padding: 1.4rem 1.1rem 1.25rem;
+    border-radius: 7px;
+    box-shadow: 0 8px 24px rgba(0, 50, 60, 0.07);
   }
 
-  .form-header {
-    color: #13b9e2;
-    margin-bottom: 0.5rem;
+  .private-login h2 {
+    font-size: 1.4rem;
   }
+}
 
-  .form-control {
-    padding: 0.6rem;
-    border: 2px solid #ddd;
-    width: 100%;
-    margin-bottom: 0.5rem;
-    box-sizing: border-box;
-    outline: none;
-    transition: border 0.2s ease;
-
-    &:focus {
-      border: 2px solid #aaa;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .private-login input,
+  .private-login .private-login-submit {
+    transition: none;
   }
 }
 

@@ -94,7 +94,7 @@
           {{ isLoading ? '正在加载' : '继续加载' }}
         </button>
         <span class="load-more-status" aria-live="polite">
-          {{ isLoading ? '正在加载更多文章' : `已显示 ${sortPosts.length} / ${totalPosts} 篇` }}
+          {{ isLoading ? '正在加载更多文章' : `已显示 ${sortPosts.length} / ${totalPosts} 篇 · 点击或继续下滑加载` }}
         </span>
       </template>
       <p class="all-posts-loaded" v-else aria-live="polite">
@@ -138,7 +138,12 @@ export default {
       visibleCount: this.perPage,
       isLoading: false,
       observer: null,
-      autoLoadReady: true
+      scrollHandler: null,
+      scrollRaf: null,
+      footerVisible: false,
+      scrollAtFooter: null,
+      lastScrollY: 0,
+      autoLoadDistance: 160
     }
   },
   created() {
@@ -173,7 +178,7 @@ export default {
     this.$nextTick(() => this.initInfiniteScroll())
   },
   beforeDestroy() {
-    this.disconnectObserver()
+    this.disconnectInfiniteScroll()
   },
   watch: {
     currentPage() {
@@ -236,31 +241,115 @@ export default {
     initInfiniteScroll() {
       if (
         typeof window === 'undefined'
-        || !('IntersectionObserver' in window)
         || !this.$refs.loadMore
+        || !this.hasMorePosts
       ) return
 
-      this.observer = new window.IntersectionObserver(entries => {
-        const entry = entries[entries.length - 1]
-        if (!entry) return
+      this.lastScrollY = this.getScrollTop()
+      this.scrollHandler = this.handleScrollEvent
+      window.addEventListener('scroll', this.scrollHandler, { passive: true })
 
-        if (!entry.isIntersecting) {
-          this.autoLoadReady = true
-        } else if (this.autoLoadReady) {
-          this.autoLoadReady = false
-          this.loadMore()
-        }
-      }, {
-        rootMargin: '0px 0px 300px 0px',
-        threshold: 0.01
-      })
-      this.observer.observe(this.$refs.loadMore)
+      if ('IntersectionObserver' in window) {
+        this.observer = new window.IntersectionObserver(entries => {
+          const entry = entries[entries.length - 1]
+          if (!entry) return
+
+          this.footerVisible = entry.isIntersecting
+          this.scrollAtFooter = entry.isIntersecting
+            ? this.getScrollTop()
+            : null
+        }, {
+          rootMargin: '0px',
+          threshold: 0.01
+        })
+        this.observer.observe(this.$refs.loadMore)
+      }
     },
-    disconnectObserver() {
-      if (!this.observer) return
+    disconnectInfiniteScroll() {
+      if (this.observer) {
+        this.observer.disconnect()
+        this.observer = null
+      }
 
-      this.observer.disconnect()
-      this.observer = null
+      if (typeof window !== 'undefined' && this.scrollHandler) {
+        window.removeEventListener('scroll', this.scrollHandler)
+      }
+      if (
+        typeof window !== 'undefined'
+        && this.scrollRaf !== null
+        && window.cancelAnimationFrame
+      ) {
+        window.cancelAnimationFrame(this.scrollRaf)
+      }
+
+      this.scrollHandler = null
+      this.scrollRaf = null
+      this.footerVisible = false
+      this.scrollAtFooter = null
+    },
+    handleScrollEvent() {
+      if (this.scrollRaf !== null) return
+
+      const update = () => {
+        this.scrollRaf = null
+        this.handleScroll()
+      }
+
+      if (typeof window !== 'undefined' && window.requestAnimationFrame) {
+        this.scrollRaf = window.requestAnimationFrame(update)
+      } else {
+        update()
+      }
+    },
+    handleScroll() {
+      if (typeof window === 'undefined') return
+
+      const scrollTop = this.getScrollTop()
+      const isScrollingDown = scrollTop > this.lastScrollY
+      this.lastScrollY = scrollTop
+
+      if (!this.observer) {
+        this.updateFooterVisibility(scrollTop)
+      }
+
+      if (!isScrollingDown) {
+        this.scrollAtFooter = this.footerVisible ? scrollTop : null
+        return
+      }
+
+      if (
+        !this.hasMorePosts
+        || this.isLoading
+        || !this.footerVisible
+        || this.scrollAtFooter === null
+      ) return
+
+      if (scrollTop - this.scrollAtFooter >= this.autoLoadDistance) {
+        this.scrollAtFooter = null
+        this.loadMore()
+      }
+    },
+    updateFooterVisibility(scrollTop) {
+      if (!this.$refs.loadMore || typeof window === 'undefined') return
+
+      const rect = this.$refs.loadMore.getBoundingClientRect()
+      const viewportHeight = window.innerHeight
+        || document.documentElement.clientHeight
+      const wasVisible = this.footerVisible
+      this.footerVisible = rect.top <= viewportHeight && rect.bottom >= 0
+      if (!this.footerVisible) {
+        this.scrollAtFooter = null
+      } else if (!wasVisible || this.scrollAtFooter === null) {
+        this.scrollAtFooter = scrollTop
+      }
+    },
+    getScrollTop() {
+      if (typeof window === 'undefined') return 0
+
+      return window.pageYOffset
+        || document.documentElement.scrollTop
+        || document.body.scrollTop
+        || 0
     },
     loadMore() {
       if (!this.hasMorePosts || this.isLoading) return
@@ -276,7 +365,11 @@ export default {
         this.isLoading = false
 
         if (!this.hasMorePosts) {
-          this.disconnectObserver()
+          this.disconnectInfiniteScroll()
+        } else {
+          this.$nextTick(() => {
+            this.updateFooterVisibility(this.getScrollTop())
+          })
         }
       }
 

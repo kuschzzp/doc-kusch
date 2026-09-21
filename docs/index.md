@@ -13,7 +13,7 @@ tagline: Kusch的小破站，才疏学浅，积跬步可以至千里！
 
 features: # 可选的
   - title: AI
-    details: 主流AI技术，包含RAG、Agent、大模型等内容
+    details: 概念及实用AI技术轮
     link: /ai/ # 可选
     imgUrl: /img/ai_003.png # 可选
   - title: 部署与运维
