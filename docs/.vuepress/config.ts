@@ -53,20 +53,18 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
                 link: '/database/',
             },
             {
-                text: '强大的AI',
-                link: '/ai/',
+                text: '软件工程',
+                link: '/engineering/',
             },
             {
-                text: '对线',
-                link: '/interview/'
+                text: '强大的AI',
+                link: '/ai/',
             },
             {
                 text: '更多',
                 link: '/more/',
                 items: [
-                    {text: '我的电脑', link: '/pages/words/'},
                     {text: '科学技巧', link: '/pages/science/'},
-                    {text: '杂文铺', link: '/pages/d9c430/'},
                     {text: '友情链接', link: '/friends/'},
                 ],
             },
@@ -251,7 +249,6 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
             },
         ],
         ['meta', {name: 'theme-color', content: '#11a8cd'}], // 移动浏览器主题颜色
-        ['script', {src: 'https://cdn.bootcdn.net/ajax/libs/axios/1.3.6/axios.min.js'}],//引入axios install的方式有问题，用这种方式吧！！！！
         // [
         //   'script',
         //   {
