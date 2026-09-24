@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import TurndownService from 'turndown'
+import TurndownService from 'turndown/lib/turndown.browser.es.js'
 import { gfm } from 'turndown-plugin-gfm'
 
 const STATUS_TEXT = {
