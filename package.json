@@ -36,6 +36,8 @@
     "async-validator": "^1.11.5",
     "core-js": "^3.30.2",
     "element-ui": "^2.15.13",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2",
     "vuepress-plugin-reading-progress": "^1.0.10",
     "yarn": "^1.22.22"
   }

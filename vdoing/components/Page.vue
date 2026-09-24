@@ -13,15 +13,19 @@
         <div class="content-wrapper">
           <RightMenu v-if="showRightMenu" />
 
-          <h1 v-if="showTitle">
-            <img
-              :src="currentBadge"
-              v-if="$themeConfig.titleBadge === false ? false : true"
-            />{{ this.$page.title
-            }}<span class="title-tag" v-if="$frontmatter.titleTag">{{
-              $frontmatter.titleTag
-            }}</span>
-          </h1>
+          <div class="page-title-row" v-if="showTitle">
+            <h1>
+              <img
+                :src="currentBadge"
+                v-if="$themeConfig.titleBadge === false ? false : true"
+              />{{ this.$page.title
+              }}<span class="title-tag" v-if="$frontmatter.titleTag">{{
+                $frontmatter.titleTag
+              }}</span>
+            </h1>
+
+            <CopyArticleButton v-if="showCopyArticle" />
+          </div>
 
           <slot name="top" v-if="isShowSlotT" />
 
@@ -49,6 +53,7 @@ import ArticleInfo from './ArticleInfo.vue'
 import Catalogue from './Catalogue.vue'
 import UpdateArticle from './UpdateArticle.vue'
 import RightMenu from './RightMenu.vue'
+import CopyArticleButton from './CopyArticleButton.vue'
 
 import TitleBadgeMixin from '../mixins/titleBadge'
 
@@ -60,7 +65,15 @@ export default {
     }
   },
   props: ['sidebarItems'],
-  components: { PageEdit, PageNav, ArticleInfo, Catalogue, UpdateArticle, RightMenu },
+  components: {
+    PageEdit,
+    PageNav,
+    ArticleInfo,
+    Catalogue,
+    UpdateArticle,
+    RightMenu,
+    CopyArticleButton
+  },
   created() {
     this.updateBarConfig = this.$themeConfig.updateBar
   },
@@ -74,6 +87,9 @@ export default {
     },
     showTitle() {
       return !this.$frontmatter.pageComponent
+    },
+    showCopyArticle() {
+      return this.isArticle() && !this.pageComponent && this.$frontmatter.copyArticle !== false
     },
     showRightMenu() {
       const { $frontmatter, $themeConfig, $page } = this
@@ -138,6 +154,13 @@ export default {
 .theme-vdoing-wrapper
   .content-wrapper
     position relative
+  .page-title-row
+    display flex
+    align-items center
+    gap .75rem
+    > h1
+      min-width 0
+      flex 1
   h1
     .title-tag
       height 1.5rem

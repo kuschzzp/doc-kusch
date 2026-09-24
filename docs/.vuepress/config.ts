@@ -31,6 +31,8 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
 
     // 主题配置
     themeConfig: {
+        copyArticleOrigin: WEB_SITE, // 复制全文时将站内链接和资源地址转换为线上绝对地址
+
         // 导航配置
         nav: [
             {text: '首页', link: '/'},
